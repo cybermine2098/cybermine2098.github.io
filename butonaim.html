@@ -29,7 +29,7 @@
     }
     
     function eminate(totalbut) {
-      if(document.getElementById("1") != undefined){
+      if(document.getElementsByClassName("shiftable").length < 1){
       for (let i = totalbut; i > 0; i--) {
         document.getElementById("inputsz").innerHTML += "<button style=\"position:fixed; background-color:rgb("
           + Math.floor(Math.random() * 255) + ","
