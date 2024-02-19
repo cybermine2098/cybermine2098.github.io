@@ -22,7 +22,9 @@
   <script>
     var finished = [];
     function start() {
+      if(document.getElementsByClassName("shiftable").length < 1){
       eminate(Number(document.getElementById("numtogo").value))
+      }
     }
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
@@ -30,7 +32,6 @@
     
     function eminate(totalbut) {
       console.log(document.getElementsByClassName("shiftable").length)
-      if(document.getElementsByClassName("shiftable").length < 1){
       for (let i = totalbut; i > 0; i--) {
         document.getElementById("inputsz").innerHTML += "<button style=\"position:fixed; background-color:rgb("
           + Math.floor(Math.random() * 255) + ","
@@ -45,7 +46,6 @@
           + i +
           "</button>";
         finished.push(i);
-      }
       rebuild();
     }
     }
