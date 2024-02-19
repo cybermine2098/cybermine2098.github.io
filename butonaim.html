@@ -29,6 +29,7 @@
     }
     
     function eminate(totalbut) {
+      console.log(document.getElementsByClassName("shiftable").length)
       if(document.getElementsByClassName("shiftable").length < 1){
       for (let i = totalbut; i > 0; i--) {
         document.getElementById("inputsz").innerHTML += "<button style=\"position:fixed; background-color:rgb("
