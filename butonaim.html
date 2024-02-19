@@ -29,6 +29,7 @@
     }
     
     function eminate(totalbut) {
+      if(document.getElementById("1") != undefined){
       for (let i = totalbut; i > 0; i--) {
         document.getElementById("inputsz").innerHTML += "<button style=\"position:fixed; background-color:rgb("
           + Math.floor(Math.random() * 255) + ","
@@ -45,6 +46,7 @@
         finished.push(i);
       }
       rebuild();
+    }
     }
     function gone(totalbuttons, buttonid) {
       let target = document.getElementById(buttonid);
