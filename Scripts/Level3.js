@@ -11,5 +11,5 @@ function checkwin(btn,realbuttons) {
     }
 }
 function next(){
-    window.location.replace("buttonaim.html");
+    window.location.replace("butonaim.html");
 }
