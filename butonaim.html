@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>ButtonGAIM</title>
+  <link rel="icon" href="Media/Amongus.png" />
+  <!--Dude this project is so silly-->
+</head>
+
+<body>
+  <textarea id="numtogo" style="width:200px;height:20px;"></textarea>
+  <br>
+  <button onclick="start()">Start Game</button>
+  <button onclick="randomizeR()">randomize</button>
+  <button onclick="gameloop()">automove</button>
+  <div id="inputsz">
+  </div>
+  <div>
+    <p style="z-index: 5; color:white; background-color: black; width: fit-content;" id="buttonsleft"></p>
+  </div>
+  <script>
+    var finished = [];
+    function start() {
+      eminate(Number(document.getElementById("numtogo").value))
+    }
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    function eminate(totalbut) {
+      for (let i = totalbut; i > 0; i--) {
+        document.getElementById("inputsz").innerHTML += "<button style=\"position:fixed; background-color:rgb("
+          + Math.floor(Math.random() * 255) + ","
+          + Math.floor(Math.random() * 255) + ","
+          + Math.floor(Math.random() * 255) + ");  left:"
+          + (Math.floor(Math.random() * 100)) +
+          "%; top:"
+          + (Math.floor(Math.random() * 100)) +
+          "%; font-size: 14px;\" class=\"shiftable\" id=\"" + i + "\" onclick=\"gone(" + totalbut + ","
+          + i +
+          ")\"> button #"
+          + i +
+          "</button>";
+        finished.push(i);
+      }
+      rebuild();
+    }
+    function gone(totalbuttons, buttonid) {
+      let target = document.getElementById(buttonid);
+      let globalbuttons = document.getElementsByClassName("shiftable").length;
+      if (finished.includes(buttonid)) {//checks if the button id is in the array
+        let indexlocat = finished.indexOf(buttonid)
+        finished.splice(indexlocat, 1);//physically deletes it from the array
+      }
+      target.remove();//removes html element
+      rebuild(2);
+      let cull = (totalbuttons - globalbuttons) + 1;
+      if(cull == totalbuttons){
+        document.getElementById("buttonsleft").innerHTML = "All buttons clicked."
+      }else{
+        document.getElementById("buttonsleft").innerHTML = "Clicked: " + cull + "/" + totalbuttons;
+      }
+    }
+    function gameloop() {
+      let speed = Number(prompt("MS/repeat"));
+    }
+    function rebuild() {
+      for (let next = finished.length; next > 0; next--) {
+        let lefttoadd = (randomN(-2,3));
+        let toptoadd = (randomN(-2,3));
+        let currL = Number(document.getElementById(finished[next - 1]).style.left.slice(0, 2));
+        let currT = Number(document.getElementById(finished[next - 1]).style.top.slice(0, 2));
+        let leftadd = currL + lefttoadd;
+        let topadd = currT + toptoadd;
+        document.getElementById(finished[next - 1]).style.left = leftadd + "%";
+        document.getElementById(finished[next - 1]).style.top = topadd + "%";
+      }
+    }
+    function randomN(low,high){
+    return((Math.random() * (high - low)) + low);
+    }
+  </script>
+</body>
+
+</html>

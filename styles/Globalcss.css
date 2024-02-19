@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Gayathri&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gayathri&family=Roboto+Condensed:wght@800&display=swap');
+body{
+    background-image: url(Background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Gayathri', serif;
+}
+button{
+    width: fit-content;
+    padding:10px 50px 10px 50px;
+    height: 150px;
+    font-size: 35px;
+    background-color: aqua;
+    border-radius: 20px;
+    border-width: 10px;
+    font-family: 'Gayathri', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+h3{
+    color:red;
+}
+.smaller-button{
+    border-radius: 5px;
+    border-width: 5px;
+    width: 50%;
+    height: 50px;
+    font-size: 15px;
+    background-color: blueviolet;
+}
+.back-button{
+    width: 75px;
+    height: 25px;
+    font-size: 10px;
+    background-color: gray;
+    border-radius: 2px;
+    border-width:2px;
+    padding:2px;
+    position:fixed;
+    top:96%;
+    left:0.5%
+}
+.centerbox{
+    margin:auto;
+    border:solid 10px blue;
+    width:fit-content;
+    height:fit-content;
+    border-radius: 30px;
+    margin-bottom: 30px;
+}
+.centertext{
+    text-align: center;
+}
+button:hover{
+    color:brown;
+    background-color: aquamarine;
+}
+.secret{
+    color:white;
+    background-color:white;
+    border-color: white;
+    position: fixed;
+    border:0px;
+    width:60px;
+    height:30px;
+    font-size: 10px;
+    top:500px;
+    left:300px;
+}
+.hidden{
+    height:0px!important;
+    width:0px!important;
+}
