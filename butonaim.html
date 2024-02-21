@@ -9,80 +9,136 @@
 </head>
 
 <body>
-  <textarea id="numtogo" style="width:200px;height:20px;"></textarea>
-  <br>
-  <button onclick="start()">Start Game</button>
-  <button onclick="randomizeR()">randomize</button>
-  <button onclick="gameloop()">automove</button>
+  <div>
+    <h4 id="setout">Setting: buttons to spawn</h4>
+    <textarea id="numtogo" style="width:200px;height:20px;"></textarea>
+  </div>
+  <button onclick="start()" style="width:50px">Start Game</button>
+  <button onclick="randomizeR()" style="width:50px">rando mize</button>
+  <button onclick="gameloopS()" style="width:50px">auto move</button>
+  <button onclick="setseedS()" style="width:50px">set seed</button>
   <div id="inputsz">
   </div>
   <div>
     <p style="z-index: 5; color:white; background-color: black; width: fit-content;" id="buttonsleft"></p>
   </div>
   <script>
+    //initializes the variables used by all functions.
     var finished = [];
+    var dogametick = 1;
+    var newgame = 1;
+    var gloseed = 2;
+    //a function to start the game but checks for no buttons left.
     function start() {
-      if(document.getElementsByClassName("shiftable").length < 1){
-      eminate(Number(document.getElementById("numtogo").value))
+      if (document.getElementsByClassName("shiftable").length < 1) {
+        eminate(Number(document.getElementById("numtogo").value))//calls to spawn buttons
+        resettext();//clears text
       }
     }
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
+    //creates a pesudorandom number VVV
+    function randomN(low, high) {
+      return ((Math.random() * (high - low)) + low);//generates said number
     }
-    
+    function setseedS() {
+      rebuildR(document.getElementById("numtogo").value);
+    }
+    function rebuildR(seed) {
+      if (seed != 2) {
+        gloseed = seed
+      }
+      rebuild(gloseed)
+    }
+    //Generates the buttons VVV
+    function randomizeR() {
+      dogametick = 1;//sets autotick to true
+      eminate(RandomN(10, 200));//spawns the buttons
+    }
+    //sleep function used within programs VVV
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));//i have no clue what this does i think it basically sets the "wait".then time.
+    }
+    //resets textbox
+    function resettext() {
+      document.getElementById("numtogo").value = "";//resets the value of the text box
+      newgame = 0;//disallows something i forgor
+    }
+    //automates button movement and disables the move on click VVV
+    function gameloopS() {
+      gameloop(Number(document.getElementById("numtogo").value));//calls to start the gameloop with a tick value in ms
+      resettext();//calls function to resets text
+      dogametick = 0;//turns automove off
+    }
+    //callable function to summon "totalbut" amount of buttons
     function eminate(totalbut) {
-      console.log(document.getElementsByClassName("shiftable").length)
+      newgame = 1;//allows something i forgor
       for (let i = totalbut; i > 0; i--) {
-        document.getElementById("inputsz").innerHTML += "<button style=\"position:fixed; background-color:rgb("
-          + Math.floor(Math.random() * 255) + ","
-          + Math.floor(Math.random() * 255) + ","
-          + Math.floor(Math.random() * 255) + ");  left:"
-          + (Math.floor(Math.random() * 100)) +
+        document.getElementById("inputsz").innerHTML += "<button style=\"position:fixed; background-color:rgb("//terrible setup i made for this thing.
+          + Math.floor(Math.random() * 255) + ","//red value random
+          + Math.floor(Math.random() * 255) + ","//green value random
+          + Math.floor(Math.random() * 255) + ");  left:"//blue value random
+          + (Math.floor(Math.random() * 100)) +//left value random position
           "%; top:"
-          + (Math.floor(Math.random() * 100)) +
+          + (Math.floor(Math.random() * 100)) +//top value random position
           "%; font-size: 14px;\" class=\"shiftable\" id=\"" + i + "\" onclick=\"gone(" + totalbut + ","
-          + i +
+          + i +//assigns the id of the button to the callback so the call can find who to delete
           ")\"> button #"
           + i +
           "</button>";
-        finished.push(i);
-      rebuild();
+        finished.push(i);//adds to the index
+      }
+      rebuildR(2);
     }
-    }
+    //enables a button to delete itself when clicked.
     function gone(totalbuttons, buttonid) {
       let target = document.getElementById(buttonid);
-      let globalbuttons = document.getElementsByClassName("shiftable").length;
+      let globalbuttons = document.getElementsByClassName("shiftable").length;//grabs total buttons present
       if (finished.includes(buttonid)) {//checks if the button id is in the array
-        let indexlocat = finished.indexOf(buttonid)
+        let indexlocat = finished.indexOf(buttonid)//finds the location of the thing to remove from the array
         finished.splice(indexlocat, 1);//physically deletes it from the array
       }
       target.remove();//removes html element
-      rebuild(2);
-      let cull = (totalbuttons - globalbuttons) + 1;
-      if(cull == totalbuttons){
-        document.getElementById("buttonsleft").innerHTML = "All buttons clicked."
-      }else{
-        document.getElementById("buttonsleft").innerHTML = "Clicked: " + cull + "/" + totalbuttons;
+      if (dogametick == 1) {
+        rebuildR(2);//rebuilds and shifts buttons
+      }
+      let cull = (totalbuttons - globalbuttons) + 1;//updates the "correct" display number
+      if (cull == totalbuttons) {
+        document.getElementById("buttonsleft").innerHTML = "All buttons clicked."//updates minidisplay
+      } else {
+        document.getElementById("buttonsleft").innerHTML = "Clicked: " + cull + "/" + totalbuttons;//updates minidisplay
       }
     }
-    function gameloop() {
-      let speed = Number(prompt("MS/repeat"));
+    //automove preface
+    function gameloop(ms) {
+      rebuildR(2);                                                    //shifts all buttons
+      if (document.getElementsByClassName("shiftable").length > 0) {  //runs only if all buttons are gone
+        sleep(ms).then(() => { gameloop(ms) });                       //waits a prefixed amount of time
+      }
     }
-    function rebuild() {
+    //moves all buttons within the canvas with the id shiftable.
+    function rebuild(seed) {
       for (let next = finished.length; next > 0; next--) {
-        let lefttoadd = (randomN(-2,3));
-        let toptoadd = (randomN(-2,3));
-        let currL = Number(document.getElementById(finished[next - 1]).style.left.slice(0, 2));
-        let currT = Number(document.getElementById(finished[next - 1]).style.top.slice(0, 2));
-        let leftadd = currL + lefttoadd;
-        let topadd = currT + toptoadd;
-        document.getElementById(finished[next - 1]).style.left = leftadd + "%";
-        document.getElementById(finished[next - 1]).style.top = topadd + "%";
+        let lefttoadd = (randomN(0 - seed, seed + 1));                                   //grabs a pseudorandom number
+        let toptoadd = (randomN(0 - seed, seed + 1));                                    //grabs a pseudorandom number
+        let currL = Number(document.getElementById(finished[next - 1]).style.left.slice(0, 2));//splices and grabs the current %
+        let currT = Number(document.getElementById(finished[next - 1]).style.top.slice(0, 2));//splices and grabs the current %
+        let leftadd = currL + lefttoadd;//reaffixes a new number
+        let topadd = currT + toptoadd;//reaffixes a new number
+        document.getElementById(finished[next - 1]).style.left = leftadd + "%";   //modifies left by -2 to 2%
+        document.getElementById(finished[next - 1]).style.top = topadd + "%";     //modifies top by -2 to 2%
       }
     }
-    function randomN(low,high){
-    return((Math.random() * (high - low)) + low);
+    //updates the Setting display
+    function updatedisplay() {
+      if (document.getElementsByClassName("shiftable").length < 1) {               //if the buttons are all gone then
+        document.getElementById("setout").innerHTML = "Setting: Buttons to spawn"//sets display to the accurate input type
+      } else {                                                                    //else
+        document.getElementById("setout").innerHTML = "Setting: Automove ms";//sets display to 
+      }
+      sleep(10).then(() => { updatedisplay() });//refreshes the display every 10ms.
     }
+    updatedisplay();//initializes the display.
+
+    //love you vi <3
   </script>
 </body>
 
