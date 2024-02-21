@@ -18,16 +18,15 @@ function addnumber() {
 }
 
 function confirm() {
-   let submission;
-    submission = prompt("are you sure +1-" +internal+ " is correct? y/n");
-    if (submission == "y"){
-if (internal.length == 12){
+    let submission;
+    submission = prompt("are you sure +1-" + internal + " is correct? y/n");
+    if (submission == "y") {
+        if (internal.length == 12) {
             document.getElementById("secret").innerHTML = "Submitted!";
             document.getElementById("moveon").innerHTML = "<form action=\"susi.html\"><button class=\"smaller-button\">Phone number stolen smh. move on.</button></form>";
-}else
-{
-    alert("Incorrect phone number. you fail :(")
-    window.location.assign("file:///home/chronos/u-1572be158ab9025a1bd9e8c605dfffeff85d9cf5/MyFiles/Main/webfiles/lev1.html?");
-}
-}
+        } else {
+            alert("Incorrect phone number. you fail :(")
+            window.location.assign("file:///home/chronos/u-1572be158ab9025a1bd9e8c605dfffeff85d9cf5/MyFiles/Main/webfiles/lev1.html?");
+        }
+    }
 }
