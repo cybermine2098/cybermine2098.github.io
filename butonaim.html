@@ -74,9 +74,9 @@
             + Math.floor(Math.random() * 255) + ","//red value random
             + Math.floor(Math.random() * 255) + ","//green value random
             + Math.floor(Math.random() * 255) + ");  left:"//blue value random
-            + (Math.floor(Math.random() * 100)) +//left value random position
+            + RandomizeR(100,10) +//left value random position
             "%; top:"
-            + (Math.floor(Math.random() * 100)) +//top value random position
+            + RandomizeR(100,10) +//top value random position
             "%; font-size: 14px;\" class=\"shiftable\" id=\"" + i + "\" onclick=\"gone(" + totalbut + ","
             + i +//assigns the id of the button to the callback so the call can find who to delete
             ")\"> button #"
