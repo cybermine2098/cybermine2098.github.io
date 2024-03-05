@@ -1,0 +1,92 @@
+.buttonaction {
+    background-color: rgb(0, 225, 255);
+    color: black;
+    border-radius: 15px;
+
+}
+body{
+    background-color: black;
+    columns: black;
+}
+.centered {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+#container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+
+#pos1 {
+    position: fixed;
+    left: 15%;
+    top: 0%;
+    font-size: 30px;
+    text-align: center;
+}
+
+#pos0 {
+    position: fixed;
+    left: 25%;
+    top: 0%;
+    font-size: 30px;
+    text-align: center;
+
+}
+
+#pos2 {
+    position: fixed;
+    left: 35%;
+    top: 0%;
+    font-size: 30px;
+    text-align: center;
+}
+#pos3 {
+    position: fixed;
+    left: 35%;
+    top: 0%;
+    font-size: 30px;
+    text-align: center;
+}
+
+
+#but1 {
+    position: fixed;    
+    left: 15%;
+    top: 30%;
+    height: 5%;
+}
+
+#but0 {
+    position: fixed;
+    left: 25%;
+    top: 30%;
+    height: 5%;
+}
+
+#but3 {
+    position: fixed;
+    left: 25%;
+    top: 35%;
+    height: 5%;
+}
+
+#but2 {
+    position: fixed;
+    left: 35%;
+    top: 30%;
+    height: 5%;
+}
+#animate{
+    text-align: center;
+}
+p{
+    color:white;
+}
