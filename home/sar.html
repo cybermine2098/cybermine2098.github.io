@@ -82,7 +82,8 @@
         "https://v4vi.dev",
         "https://docs.google.com",
         "https://sheets.google.com",
-        "https://google.com"
+        "https://google.com",
+        "https://https://www.nytimes.com/crosswords"
       ];
       var options = [
         "Gmail",
@@ -94,9 +95,10 @@
         "v4",
         "Gdocs",
         "Gsheets",
-        "google"
+        "google",
+        "NYT"
       ];
-      var reqauth = [0, 0, 1, 0, 1, 3, 2, 0, 0, 0];
+      var reqauth = [0, 0, 1, 0, 1, 3, 2, 0, 0, 0, 0];
       var currauth;
       var optionsindx = 0;
       var coloropt = 1;
@@ -228,8 +230,13 @@
           document.getElementById("pos1").innerHTML = options[optionsindx - 1];
           document.getElementById("pos2").innerHTML = options[optionsindx + 1];
         }
-        document.getElementById("soncole").innerHTML =
-          localStorage.getItem("user");
+        if (localStorage.getItem("user") != undefined){
+          document.getElementById("soncole").innerHTML = "Hi "+localStorage.getItem("user")+"!";
+        }else{
+          document.getElementById("soncole").innerHTML = "Hello guest";
+
+        }
+
       }
       function errorfix(showdisp) {
         if (showdisp == 1) {
@@ -300,8 +307,14 @@
           let saveduser = localStorage.getItem("user");
           if (saveduser == undefined) {
             let userN = prompt("Username");
+            if (userN == "list"){
+              alert(users)
+              alert("backslash = aspen, enter = google or go to site, tilde = duplicate tab")
+              login(1,0)
+            }else{
             localStorage.setItem("user", userN);
             currauth = userlevel[users.indexOf(userN)];
+          }
           } else {
             currauth = userlevel[users.indexOf(saveduser)];
           }
