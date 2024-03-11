@@ -60,28 +60,28 @@ body{
 #but1 {
     position: fixed;    
     left: 15%;
-    top: 30%;
+    top: 20%;
     height: 5%;
 }
 
 #but0 {
     position: fixed;
     left: 25%;
-    top: 30%;
+    top: 20%;
     height: 5%;
 }
 
 #but3 {
     position: fixed;
     left: 25%;
-    top: 35%;
+    top: 25%;
     height: 5%;
 }
 
 #but2 {
     position: fixed;
     left: 35%;
-    top: 30%;
+    top: 20%;
     height: 5%;
 }
 #animate{
