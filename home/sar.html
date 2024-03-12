@@ -9,97 +9,102 @@
       href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbvGl4jaIJPm-1j-70crvicNotqtZ2Qw1lptBcDTqcWJbMQGb1i7hWcKYAwACLAhPy2Eo:https://asset.brandfetch.io/id7QyaLp8E/idYJnR6YE1.jpeg&usqp=CAU"
     />
     <style>
-            .buttonaction {
-          background-color: rgb(0, 225, 255);
-          color: black;
-          border-radius: 15px;
+      .buttonaction {
+        background-color: rgb(0, 225, 255);
+        color: black;
+        border-radius: 15px;
       }
-      body{
-          background-color: black;
-          columns: black;
+
+      body {
+        background-color: black;
+        columns: black;
       }
+
       .centered {
-          justify-content: center;
-          text-align: center;
-          align-items: center;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
       }
 
       #container {
-          width: 400px;
-          height: 400px;
-          position: relative;
-          justify-content: center;
-          text-align: center;
-          align-items: center;
+        width: 400px;
+        height: 400px;
+        position: relative;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
       }
 
       #pos1 {
-          position: fixed;
-          left: 15%;
-          top: 0%;
-          font-size: 30px;
-          text-align: center;
+        position: fixed;
+        left: 15%;
+        top: 0%;
+        font-size: 30px;
+        text-align: center;
       }
 
       #pos0 {
-          position: fixed;
-          left: 25%;
-          top: 0%;
-          font-size: 30px;
-          text-align: center;
+        position: fixed;
+        left: 25%;
+        top: 0%;
+        font-size: 30px;
+        text-align: center;
       }
 
       #pos2 {
-          position: fixed;
-          left: 35%;
-          top: 0%;
-          font-size: 30px;
-          text-align: center;
-      }
-      #pos3 {
-          position: fixed;
-          left: 35%;
-          top: 0%;
-          font-size: 30px;
-          text-align: center;
+        position: fixed;
+        left: 35%;
+        top: 0%;
+        font-size: 30px;
+        text-align: center;
       }
 
+      #pos3 {
+        position: fixed;
+        left: 35%;
+        top: 0%;
+        font-size: 30px;
+        text-align: center;
+      }
 
       #but1 {
-          position: fixed;
-          left: 15%;
-          top: 20%;
-          height: 5%;
+        position: fixed;
+        left: 15%;
+        top: 20%;
+        height: 5%;
       }
 
       #but0 {
-          position: fixed;
-          left: 25%;
-          top: 20%;
-          height: 5%;
+        position: fixed;
+        left: 25%;
+        top: 20%;
+        height: 5%;
       }
 
       #but3 {
-          position: fixed;
-          left: 25%;
-          top: 25%;
-          height: 5%;
+        position: fixed;
+        left: 25%;
+        top: 25%;
+        height: 5%;
       }
 
       #but2 {
-          position: fixed;
-          left: 35%;
-          top: 20%;
-          height: 5%;
+        position: fixed;
+        left: 35%;
+        top: 20%;
+        height: 5%;
       }
-      #animate{
-          text-align: center;
+
+      #animate {
+        text-align: center;
       }
-      p{
-          color:white;
+
+      p {
+        color: white;
       }
-      h3{
-        color:white;
+
+      h3 {
+        color: white;
       }
     </style>
   </head>
@@ -107,31 +112,33 @@
   <body>
     <div>
       <div>
-        <p id="googlabel" style="color:white;">Google something:</p>
+        <p id="googlabel" style="color: white">Google something:</p>
         <textarea
-          style="resize:none; width:250px; height: 30px;"
+          style="resize: none; width: 250px; height: 30px"
           id="googlein"
         ></textarea>
-        <p style="position:absolute;right:5%;bottom:10%">Search on youtube:</p>
+        <p style="position: absolute; right: 5%; bottom: 10%">
+          Search on youtube:
+        </p>
       </div>
     </div>
     <div id="container">
       <div id="animate">
-        <p id="pos1" style="color:white;left:35%" class="centered animate">
+        <p id="pos1" style="color: white; left: 35%" class="centered animate">
           Youtube
         </p>
-        <p id="pos0" style="color:white;left:50%" class="centered animate">
+        <p id="pos0" style="color: white; left: 50%" class="centered animate">
           Vscode
         </p>
-        <p id="pos2" style="color:white;left:65%" class="centered animate">
+        <p id="pos2" style="color: white; left: 65%" class="centered animate">
           Webfiles
         </p>
-        <p id="pos3" style="color:white;opacity: 0%;">test</p>
+        <p id="pos3" style="color: white; opacity: 0%">test</p>
       </div>
       <br />
       <button
         id="but1"
-        style="width:10%; left:35%"
+        style="width: 10%; left: 35%"
         class="centered buttonaction"
         onclick="relaydisplay(-1)"
       >
@@ -139,13 +146,13 @@
       </button>
       <button
         id="but0"
-        style="width:10%; left:50%"
+        style="width: 10%; left: 50%"
         class="centered buttonaction"
         onclick="query()"
       ></button>
       <button
         id="but3"
-        style="width:10%; left:50%"
+        style="width: 10%; left: 50%"
         class="centered buttonaction"
         onclick="query(1)"
       >
@@ -153,7 +160,7 @@
       </button>
       <button
         id="but2"
-        style="width:10%; left:65%;"
+        style="width: 10%; left: 65%"
         class="centered buttonaction"
         onclick="relaydisplay(1)"
       >
@@ -163,12 +170,26 @@
 
     <div id="signinstuff">
       <textarea
-        style="resize:none; width:250px; height: 30px;position:absolute;left:0%;bottom:22%"
+        style="
+          resize: none;
+          width: 250px;
+          height: 30px;
+          position: absolute;
+          left: 0%;
+          bottom: 22%;
+        "
         id="userbox"
       ></textarea>
       <br />
       <input
-        style="resize:none; width:250px; height: 30px;position:absolute;left:0%;bottom:15%"
+        style="
+          resize: none;
+          width: 250px;
+          height: 30px;
+          position: absolute;
+          left: 0%;
+          bottom: 15%;
+        "
         id="passbox"
         type="password"
       />
@@ -179,7 +200,7 @@
       <button onclick="login(1,1)">Sign out</button>
     </div>
 
-    <div id="downloads" style="position: absolute; bottom:10%; right: 30%">
+    <div id="downloads" style="position: absolute; bottom: 10%; right: 30%">
       <h3>Download these files to use offline:</h3>
       <p>
         Press ctrl+S, and instead of saving as mhtml save as html (its one file
@@ -188,25 +209,17 @@
         your own username and whatnot. <br />
       </p>
     </div>
-    <p id="soncole" style="color:white;">Guest</p>
+    <p id="soncole" style="color: white">Guest</p>
     <script>
-      const usersn = [
-        "Olive",
-        "MrFinschleister",
-        "Sophie",
-        "Aaila",
-        "Marley",
-        "Ryden",
-      ];
+      const usersn = ["Olive", "MrFinschleister", "Aaila", "Marley", "Ryden"];
       const passwords = [
         "Zelt@112",
         "MrFinschleister",
-        "",
         undefined,
         undefined,
         "John Pork",
       ];
-      const userlevel = [3, 2, 3, 2, 2, 1];
+      const userlevel = [3, 2, 2, 2, 1];
       const optionshref = [
         "https://gmail.com",
         "https://cybermine2098.github.io/webfiles/index.html",
@@ -424,11 +437,11 @@
           if (document.getElementById("googlein").value != "") {
             google(); //if there's something to google, it does.
           } else {
-            if(document.getElementById("userbox").value != ""){
-              login(0,1)
-            }else{
+            if (document.getElementById("userbox").value != "") {
+              login(0, 1);
+            } else {
               query(); //else it doesn't.
-          }
+            }
           }
         } else if (e.keyCode == "220") {
           window.location.replace("https://aspen.cps.edu"); //backslash \ <- this one
@@ -449,8 +462,6 @@
           currauth = 0;
         } else {
           //runs login code
-          document.getElementById("passbox").style.opacity = "100%";
-                  document.getElementById("userbox").style.opacity = "100%";
           let saveduser = localStorage.getItem("user");
           if (saveduser == undefined) {
             let userN = document.getElementById("userbox").value;
@@ -467,7 +478,7 @@
                 if (passwords[users.indexOf(userN)] !== password) {
                   login(1, 0);
                   alert("password invalid. acess denied.");
-                }else{
+                } else {
                   document.getElementById("passbox").value = "";
                   document.getElementById("userbox").value = "";
                   document.getElementById("passbox").style.opacity = "0%";
@@ -479,9 +490,6 @@
             currauth = userlevel[usersn.indexOf(saveduser)];
           }
         }
-      }
-      function submitstuff() {
-        sign = 1;
       }
     </script>
   </body>
