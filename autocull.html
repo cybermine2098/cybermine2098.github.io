@@ -95,8 +95,8 @@
       function nextbox() {
         ETX = rand(MxWD - tolerance, MiWD - tolerance);
         ETY = rand(MxHT - tolerance, MiHT - tolerance);
-        document.getElementById("gamer").style.width = rand(MxWD,10)
-        document.getElementById("gamer").style.height = rand(MxHT,10)
+        document.getElementById("gamer").style.width = rand(MxWD-tolerance,tolerance+1)
+        document.getElementById("gamer").style.height = rand(MxHT-tolerance,tolerance+1)
       }
       function eventhandler() {
         let les = document.getElementById("gamer").style;
