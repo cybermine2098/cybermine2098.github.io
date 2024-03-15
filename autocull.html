@@ -36,8 +36,9 @@
       let tolerance;
       let score = 0;
       preref();
-      document.getElementById("references").innerHTML = window.innerHeight+", "+window.innerWidth;
       function preref(){
+        document.getElementById("references").innerHTML = window.innerHeight+", "+window.innerWidth;
+
         sleep(1).then(()=>{preref();})
       }
       function calibrate() {
