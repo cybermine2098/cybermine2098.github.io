@@ -8,7 +8,7 @@
   <body>
     <p id="tolerancereal">Enter tolerance in px here:</p>
     <textarea id="difficulty" style="resize:none;"></textarea><br />
-    <button id="calibrate" onclick="calibrate()">Calibrate screen area</button>\
+    <button id="calibrate" onclick="calibrate()">Calibrate screen area</button>
     <h3 id="references"></h3>
     <p id="outside"></p>
     <div
@@ -38,7 +38,7 @@
       preref();
       function preref(){
         document.getElementById("references").innerHTML = window.innerHeight+", "+window.innerWidth;
-
+        document.getElementById("scorekeeper").innerHTML = window.navigator.userAgent;
         sleep(1).then(()=>{preref();})
       }
       function calibrate() {
