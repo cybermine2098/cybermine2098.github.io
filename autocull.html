@@ -63,7 +63,7 @@
         document.getElementById("gamer").style.width = rand(MxWD,10)
         document.getElementById("gamer").style.height = rand(MxHT,10)
         let edge = document.getElementById("edges");
-        document.getElementById("edgedisplay").innerHTML = "Playing feild";
+        document.getElementById("edgedisplay").innerHTML = "Playing Field";
         edge.style.width = MxWD - MiWD + "px";
         edge.style.height = MxHT - MiHT + "px";
         document.getElementById("gamer").style.border = tolerance+"px,green,solid;";
@@ -90,7 +90,7 @@
         document.getElementById("edges").style.top = MiHT - WSY + "px";
         document.getElementById("edges").style.left = MiWD - WSX + "px";
         //stop
-        document.getElementById("outside").innerHTML = "out of playing feild!";
+        document.getElementById("outside").innerHTML = "out of playing Field!";
         let inbox = ETX + ", " + ETY;
         document.getElementById("boxdisplay").innerHTML = inbox;
         //eventhandler();
