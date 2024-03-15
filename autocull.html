@@ -36,7 +36,7 @@
       let score = 0;
       preref();
       function preref(){
-        document.getElementById("references").innerHTML = window.innerHeight+", "+window.innerWidth+"<br>"+window.screenLeft+", "+window.screenTop+" vs "+window.screenX+", "+window.screenY;
+        document.getElementById("references").innerHTML = window.innerHeight+", "+window.innerWidth+"<br>"+window.screenLeft+", "+window.screenTop;
         sleep(1).then(()=>{preref();})
       }
       function calibrate() {
