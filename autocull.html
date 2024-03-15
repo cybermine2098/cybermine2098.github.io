@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="tolerancereal">Enter tolerance in px here:</p>
+    <textarea id="difficulty" style="resize:none;"></textarea><br />
+    <button id="calibrate" onclick="calibrate()">Calibrate screen area</button>
+    <p id="outside"></p>
+    <div
+      id="gamer"
+      style="position: absolute; background-color: blue; z-index: 5;overflow-x:unset"
+    >
+      <p id="boxdisplay"></p>
+    </div>
+    <div style="position:absolute; background-color: gray;" id="edges">
+      <p id="edgedisplay"></p>
+    </div>
+    <p id="scorekeeper" style="bottom:0%; position: absolute; z-index: 10;">
+      Score will appear here.
+    </p>
+    <!--div style="position:fixed;left:50%;top:50;justify-content: center;border:5px,solid,red;" id="crosshair">Hi</div-->
+    <script>
+      let ETX;
+      let ETY;
+      let MiHT;
+      let MxHT;
+      let MiWD;
+      let MxWD;
+      let tolerance;
+      let score = 0;
+      function calibrate() {
+        score = 0;
+        tolerance = Number(document.getElementById("difficulty").value);
+        document.getElementById("calibrate").remove();
+        document.getElementById("tolerancereal").remove();
+        document.getElementById("difficulty").remove();
+        MiHT = window.screenY;
+        MxHT = window.screenY + window.innerHeight;
+        MiWD = window.screenX;
+        MxWD = window.screenX + window.innerWidth;
+        ETX = rand(MxWD - tolerance, MiWD - tolerance);
+        ETY = rand(MxHT - tolerance, MiHT - tolerance);
+        let edge = document.getElementById("edges");
+        document.getElementById("edgedisplay").innerHTML = "Playing feild";
+        edge.style.width = MxWD - MiWD + "px";
+        edge.style.height = MxHT - MiHT + "px";
+        document.getElementById("gamer").style.border = tolerance+"px,green,solid;";
+        loop();
+      }
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+      function rand(highestNumber, lowestNumber) {
+        return (
+          Math.floor(Math.random() * (highestNumber - lowestNumber)) +
+          lowestNumber
+        );
+      }
+      function loop() {
+        document.getElementById("scorekeeper").innerHTML = score;
+        let WIW = window.innerWidth;
+        let WIH = window.innerHeight;
+        let WSX = window.screenX;
+        let WSY = window.screenY;
+        //start
+        document.getElementById("gamer").style.left = ETX - WSX + "px";
+        document.getElementById("gamer").style.top = ETY - WSY + "px";
+        document.getElementById("edges").style.top = MiHT - WSY + "px";
+        document.getElementById("edges").style.left = MiWD - WSX + "px";
+        //stop
+        document.getElementById("outside").innerHTML = "out of playing feild!";
+        let inbox = ETX + ", " + ETY;
+        document.getElementById("boxdisplay").innerHTML = inbox;
+        //eventhandler();
+        sleep(1).then(() => {
+          loop();
+        });
+      }
+      function nextbox() {
+        ETX = rand(MxWD - tolerance, MiWD - tolerance);
+        ETY = rand(MxHT - tolerance, MiHT - tolerance);
+      }
+      function eventhandler() {
+        let les = document.getElementById("gamer").style;
+        let lesl = les.left.split("p");
+        let lest = les.top.split("p");
+        if (Math.abs(WIW/2)-lesl[0] <= tolerance ) {
+          if (true) {
+            nextbox();
+            score++;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
