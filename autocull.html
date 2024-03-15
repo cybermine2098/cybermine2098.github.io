@@ -31,13 +31,13 @@
       let MxHT;
       let MiWD;
       let MxWD;
-      let miniwindowsizeL = 500;
       let tolerance;
       let score = 0;
       let absminiht = localStorage.getItem("minhit")
       let absminiwd = localStorage.getItem("minwid")
       if(absminiht == null){
-        await firstcalibration();
+        alert("gamer")
+        firstcalibration();
       }else{
         preref();
       }
@@ -114,6 +114,13 @@
             score++;
           }
         }
+      }
+      function firstcalibration(){
+        alert("make your window as small as possible and then press a key.")
+        while(document.onkeydown() == false){
+          document.body.style.backgroundColor = "green;"
+        }
+        document.body.style.backgroundColor = "red;"
       }
     </script>
   </body>
