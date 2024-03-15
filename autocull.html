@@ -8,7 +8,8 @@
   <body>
     <p id="tolerancereal">Enter tolerance in px here:</p>
     <textarea id="difficulty" style="resize:none;"></textarea><br />
-    <button id="calibrate" onclick="calibrate()">Calibrate screen area</button>
+    <button id="calibrate" onclick="calibrate()">Calibrate screen area</button>\
+    <h3 id="references"></h3>
     <p id="outside"></p>
     <div
       id="gamer"
@@ -24,14 +25,21 @@
     </p>
     <!--div style="position:fixed;left:50%;top:50;justify-content: center;border:5px,solid,red;" id="crosshair">Hi</div-->
     <script>
+      
       let ETX;
       let ETY;
       let MiHT;
       let MxHT;
       let MiWD;
       let MxWD;
+      let miniwindowsizeL = 500;
       let tolerance;
       let score = 0;
+      preref();
+      document.getElementById("references").innerHTML = window.innerHeight+", "+window.innerWidth;
+      function preref(){
+        sleep(1).then(()=>{preref();})
+      }
       function calibrate() {
         score = 0;
         tolerance = Number(document.getElementById("difficulty").value);
