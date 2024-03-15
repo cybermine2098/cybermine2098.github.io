@@ -54,6 +54,8 @@
         MxWD = window.screenX + window.innerWidth;
         ETX = rand(MxWD - tolerance, MiWD - tolerance);
         ETY = rand(MxHT - tolerance, MiHT - tolerance);
+        document.getElementById("gamer").style.width = rand(MxWD,10)
+        document.getElementById("gamer").style.height = rand(MxHT,10)
         let edge = document.getElementById("edges");
         document.getElementById("edgedisplay").innerHTML = "Playing feild";
         edge.style.width = MxWD - MiWD + "px";
@@ -93,6 +95,8 @@
       function nextbox() {
         ETX = rand(MxWD - tolerance, MiWD - tolerance);
         ETY = rand(MxHT - tolerance, MiHT - tolerance);
+        document.getElementById("gamer").style.width = rand(MxWD,10)
+        document.getElementById("gamer").style.height = rand(MxHT,10)
       }
       function eventhandler() {
         let les = document.getElementById("gamer").style;
