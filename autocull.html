@@ -34,7 +34,13 @@
       let miniwindowsizeL = 500;
       let tolerance;
       let score = 0;
-      preref();
+      let absminiht = localStorage.getItem("minhit")
+      let absminiwd = localStorage.getItem("minwid")
+      if(absminiht == null){
+        await firstcalibration();
+      }else{
+        preref();
+      }
       function preref(){
         document.getElementById("references").innerHTML = window.innerHeight+", "+window.innerWidth+"<br>"+window.screenLeft+", "+window.screenTop;
         if(score == 0){
@@ -95,8 +101,8 @@
       function nextbox() {
         ETX = rand(MxWD - tolerance, MiWD - tolerance);
         ETY = rand(MxHT - tolerance, MiHT - tolerance);
-        document.getElementById("gamer").style.width = rand(MxWD-tolerance,tolerance+1)
-        document.getElementById("gamer").style.height = rand(MxHT-tolerance,tolerance+1)
+        document.getElementById("gamer").style.width = rand(MxWD-tolerance,tolerance+absminiwd)
+        document.getElementById("gamer").style.height = rand(MxHT-tolerance,tolerance+absminiht)
       }
       function eventhandler() {
         let les = document.getElementById("gamer").style;
