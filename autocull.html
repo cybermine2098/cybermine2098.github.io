@@ -25,7 +25,6 @@
     </p>
     <!--div style="position:fixed;left:50%;top:50;justify-content: center;border:5px,solid,red;" id="crosshair">Hi</div-->
     <script>
-      
       let ETX;
       let ETY;
       let MiHT;
@@ -38,7 +37,6 @@
       preref();
       function preref(){
         document.getElementById("references").innerHTML = window.innerHeight+", "+window.innerWidth;
-        document.getElementById("scorekeeper").innerHTML = window.navigator.userAgent;
         sleep(1).then(()=>{preref();})
       }
       function calibrate() {
@@ -47,6 +45,7 @@
         document.getElementById("calibrate").remove();
         document.getElementById("tolerancereal").remove();
         document.getElementById("difficulty").remove();
+        document.getElementById("references").remove();
         MiHT = window.screenY;
         MxHT = window.screenY + window.innerHeight;
         MiWD = window.screenX;
