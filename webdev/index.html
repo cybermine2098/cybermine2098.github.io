@@ -10,16 +10,33 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <style>
+      .standout{
+        color:white;
+      }
+      .customhead{
+        color:blueviolet;
+      }
+      .customstuff{
+        color:rgb(51, 215, 128);
+        font-family: 'Franklin Gothic Medium', 'Arial Wide', Arial, sans-serif;
+      }
+    </style>
   </head>
-  <body>
-    <div class="container">
-      <div class="alert alert-primary" role="alert">
-        Welcome to this website!
-      </div>
+  <body style="background-color: indigo;">
+    <div class="container px-4">
       <div class="row">
-        <h1>Games <span class="badge text-bg-danger">Hot</span></h1>
+        <h1 id="int1" class="customhead text-center">
+          Hi! This is Oliver.tools
+        </h1>
+        <p id="int2" class="customstuff text-center">
+          Website brought to you by Oliver; I hope you like it <3
+        </p>
       </div>
-      <div class="row">
+      <div class="row gy-5">
+        <h2 id="int3" class="standout">Games <span class="badge text-bg-danger">Hot</span></h2>
+      </div>
+      <div class="row gy-5">
         <div class="col-md-4">
           <div class="card">
             <img
@@ -29,7 +46,7 @@
             />
             <div class="card-body">
               <h5 class="card-title">Flappy Bird</h5>
-              <p class="card-text">
+              <p class="card-text" id="car1">
                 Dodge pipes and flap your heart out on your phone or your
                 computer. Experience the bird from a third person perspective on
                 a daring adventure, or from our VR mode (for oculus devices
@@ -42,14 +59,13 @@
         <div class="col-md-4">
           <div class="card">
             <img
-              src="media/ace_of_spades.png"
-              style="width:100%;height:18rem;"
+              src="media/blackmedia.png"
               class="card-img-top"
               alt="ace of spades from blackjack"
             />
             <div class="card-body">
               <h5 class="card-title">Blackjack</h5>
-              <p class="card-text">
+              <p class="card-text" id="car2">
                 Play against the Dealer in an epic battle of luck. Get your
                 cards up to 21, but be careful not to bust. Out signature AI
                 (TM) can attempt to save you, but once you've won, there is no
@@ -64,7 +80,7 @@
             <img src="media/snake.png" class="card-img-top" alt="snake" />
             <div class="card-body">
               <h5 class="card-title">Snake</h5>
-              <p class="card-text">
+              <p class="card-text" id="car3">
                 Play the classic game of snake with no deaths and no limit to
                 your length.
                 <br />
@@ -78,15 +94,22 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <h2>
-          Server Software <span class="badge text-bg-danger">Experimental</span>
+      <br />
+      <div class="row gy-5">
+        <h2 class="standout">
+          Server Software
+          <span class="badge text-bg-danger">Experimental</span>
+          <span class="badge text-bg-success">New</span>
         </h2>
       </div>
-      <div class="row">
+      <div class="row gy-5">
         <div class="col-md-4">
           <div class="card">
-            <img src="..." class="card-img-top" alt="TRUENAS ui" />
+            <img
+              src="media/truenas.png"
+              class="card-img-top"
+              alt="TRUENAS ui"
+            />
             <div class="card-body">
               <h5 class="card-title">TrueNas-Scale</h5>
               <p class="card-text">
@@ -94,19 +117,52 @@
                 is yours to play around with. The server doesn't exist under a
                 domain so you'll have to use this.
               </p>
-              <a href="server.html" class="btn btn-primary">Login</a>
+              <a
+                href="server.html"
+                aria-disabled="true"
+                disabled
+                class="btn btn-primary"
+                >Login</a
+              >
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div
+            id="groupB"
             class="btn-group-vertical"
             role="group"
             aria-label="Vertical button group"
           >
-            <button type="button" class="btn btn-primary btn-lg" onclick="attempt('https://98.206.39.127/vm/display/15/spice_auto.html?path=vm%2Fdisplay%2F15%2F&autoconnect=1')">VM</button>
-            <button type="button" class="btn btn-primary btn-lg" onclick="attempt('https://98.206.39.127')">Home</button>
-            <button type="button" class="btn btn-primary btn-lg" onclick="attempt('')">
+            <button type="button" class="btn btn-danger btn-lg" id="Captcha">
+              Safety warning
+            </button>
+            <button
+              aria-disabled="true"
+              type="button"
+              style="width:20rem;"
+              disabled
+              class="btn btn-primary btn-lg"
+              onclick="attempt('https://98.206.39.127/vm/display/15/spice_auto.html?path=vm%2Fdisplay%2F15%2F&autoconnect=1')"
+            >
+              VM
+            </button>
+            <button
+              aria-disabled="true"
+              type="button"
+              class="btn btn-primary btn-lg"
+              disabled
+              onclick="attempt('https://98.206.39.127')"
+            >
+              Home
+            </button>
+            <button
+              aria-disabled="true"
+              type="button"
+              class="btn btn-primary btn-lg"
+              disabled
+              onclick="attempt('http://98.206.39.127:30044')"
+            >
               Filebrowser
             </button>
             <button
@@ -115,11 +171,148 @@
               aria-disabled="true"
               disabled
             >
-              Coming soon
+              Youtube Downloader
             </button>
           </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div class="accordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  What is a NAS?
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body text-success">
+                  <strong>A NAS is a form of cloud storage.</strong> NAS stands
+                  for network attached storage and it is a self hosted way to
+                  use your spare hardware for good use. My NAS contains a
+                  globally accessible UI that has some safety features (some)
+                  Depending on what software you use, additional apps can be
+                  added.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  What are these links?
+                </button>
+              </h2>
+              <div
+                id="collapseTwo"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body text-success">
+                  - A VM is short for a virtual machine. Its an emulated
+                  computer I use for some types of web browsing in class and
+                  server hosting. It's running my minecraft server.<br />
+                  - HOME is just the homepage (again)<br />
+                  - Filebrowser is a web app that lets you browse your files
+                  from the web. I use it because it's more convieneint on
+                  devices with a VPN (which i am also hosting) and files will
+                  upload faster.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  So... what are the specs?
+                </button>
+              </h2>
+              <div
+                id="collapseThree"
+                class="accordion-collapse collapse"
+                data-bs-parent="#accordionExample"
+              >
+                <div class="accordion-body text-success">
+                  Thanks for asking! Here are the specs:
+                  <code
+                    ><br />
+                    - CPU: Ryzen 5 3600X // its an old gaming CPU I
+                    repurposed<br />
+                    - GPU: GTX 1660 SUPER // another old gaming GPU that sees
+                    very very little load<br />
+                    - GPU2: GT 730 // stole it from another pc <br />
+                    - RAM: 32GB of DDR4 @ 3200Mt/s (4 sticks of 8GB)<br />
+                    - Drive 1: 2.5 TiB of Usable HDD space<br />
+                    - Drive 2: 3 TB of Usable HDD space<br />
+                    - Drive 3: 256 GB NVMe drive (its for boot into truenas) -
+                    Drive 4: 1TiB NVMe drive for windows. It's to use it as a
+                    secondary PC for friends that come over.
+                  </code>
+                  If you've got any other questions, email requests to
+                  <a href="https://gmail.com">cybermine.business@gmail.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div
+          id="outrel"
+          class="toast"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="toast-header">
+            <img
+              src="media/logolight.png"
+              style="width:25px"
+              class="rounded me-2"
+              alt="icon"
+            />
+            <strong class="me-auto">OcO</strong>
+            <small>Safety Warning</small>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="toast-body" id="toastm">
+            <p>These links do not have security on them. you may be phished.</p>
+            <button
+              onclick="acknowledge()"
+              id="ack"
+              type="button"
+              class="btn btn-sm btn-success"
+            >
+              acknowledge
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <script
@@ -128,9 +321,50 @@
       crossorigin="anonymous"
     ></script>
     <script>
-    function attempt (location){
-      window.location.replace(location);
-    }
+      let hashes = [];
+      gethashes();
+      function gethashes() {
+        let url = window.location.href;
+        let path = url.split("/");
+        let lastpath = path[path.length - 1];
+        hashes = lastpath.split("#")
+        hashes.shift()
+        if(hashes.length > 0){
+          checkhashes();
+        }
+      }
+      function checkhashes() {
+        if (hashes.includes(":3")) {
+          alert("silly mode activated");
+          document.getElementById("int1").innerHTML = "Haiii :3 This is Olive.tools"
+          document.getElementById("int2").innerHTML = "Website brought to you by Olive I hope you like it <3:3"
+          document.getElementById("int3").innerHTML = 'Games <span class="badge text-bg-info">Certified Silly</span>'
+          document.getElementById("car1").innerHTML = 'yu can uh flap n shit. yes very burd'
+          document.getElementById("car2").innerHTML = 'silly game for silly kitties that have too much mony'
+          document.getElementById("car3").innerHTML = ''
+
+        }
+      }
+      function attempt(location) {
+        window.location.replace(location);
+      }
+      const toastTrigger = document.getElementById("Captcha");
+      const toastLiveExample = document.getElementById("outrel");
+
+      if (toastTrigger) {
+        const toastBootstrap =
+          bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+        toastTrigger.addEventListener("click", () => {
+          toastBootstrap.show();
+        });
+      }
+      function acknowledge() {
+        document.getElementById("ack").remove();
+        document.getElementById("toastm").innerHTML += "acknowledged.";
+        document.getElementById("groupB").innerHTML = "";
+        document.getElementById("groupB").innerHTML = 
+          '<button id="1rel" type="button" style="width:20rem;" class="btn btn-primary btn-lg" onclick="attempt(\'https://98.206.39.127/vm/display/15/spice_auto.html?path=vm%2Fdisplay%2F15%2F&autoconnect=1\')">VM</button><button id="2rel"type="button" class="btn btn-primary btn-lg" onclick="attempt(\'https://98.206.39.127\')">Home</button><button type="button" class="btn btn-primary btn-lg" onclick="attempt(\'http://98.206.39.127:30044\')">Filebrowser</button><button type="button" class="btn btn-primary btn-lg" disabled aria-disabled="true">Youtube Downloader</button>';
+      }
     </script>
   </body>
 </html>
