@@ -34,7 +34,9 @@
         </p>
       </div>
       <div class="row gy-5">
-        <h2 id="int3" class="standout">Games <span class="badge text-bg-danger">Hot</span></h2>
+        <h2 id="int3" class="standout">
+          Games <span class="badge text-bg-danger">Hot</span>
+        </h2>
       </div>
       <div class="row gy-5">
         <div class="col-md-4">
@@ -52,7 +54,9 @@
                 a daring adventure, or from our VR mode (for oculus devices
                 only).
               </p>
-              <a href="flapselect.html" class="btn btn-primary">Play now</a>
+              <a href="flapselect.html" class="btn btn-primary playnow"
+                >Play now</a
+              >
             </div>
           </div>
         </div>
@@ -71,7 +75,9 @@
                 (TM) can attempt to save you, but once you've won, there is no
                 cure for the addiction...
               </p>
-              <a href="crackjack.html" class="btn btn-primary">Play now</a>
+              <a href="crackjack.html" class="btn btn-primary playnow"
+                >Play now</a
+              >
             </div>
           </div>
         </div>
@@ -89,7 +95,7 @@
                 Try your luck with the autoplay feature (P) to see how good your
                 computer is, and share your top score with your friends!
               </p>
-              <a href="snake.html" class="btn btn-primary">Play now</a>
+              <a href="snake.html" class="btn btn-primary playnow">Play now</a>
             </div>
           </div>
         </div>
@@ -112,7 +118,7 @@
             />
             <div class="card-body">
               <h5 class="card-title">TrueNas-Scale</h5>
-              <p class="card-text">
+              <p class="card-text" id="nas">
                 Assuming you've got an access key and a proper password, the UI
                 is yours to play around with. The server doesn't exist under a
                 domain so you'll have to use this.
@@ -138,6 +144,7 @@
               Safety warning
             </button>
             <button
+              id="1rel"
               aria-disabled="true"
               type="button"
               style="width:20rem;"
@@ -148,6 +155,7 @@
               VM
             </button>
             <button
+              id="2rel"
               aria-disabled="true"
               type="button"
               class="btn btn-primary btn-lg"
@@ -157,6 +165,7 @@
               Home
             </button>
             <button
+              id="3rel"
               aria-disabled="true"
               type="button"
               class="btn btn-primary btn-lg"
@@ -170,6 +179,7 @@
               class="btn btn-primary btn-lg"
               aria-disabled="true"
               disabled
+              id="4rel"
             >
               Youtube Downloader
             </button>
@@ -186,6 +196,7 @@
                   data-bs-target="#collapseOne"
                   aria-expanded="true"
                   aria-controls="collapseOne"
+                  id="nas1"
                 >
                   What is a NAS?
                 </button>
@@ -214,6 +225,7 @@
                   data-bs-target="#collapseTwo"
                   aria-expanded="false"
                   aria-controls="collapseTwo"
+                  id="nas2"
                 >
                   What are these links?
                 </button>
@@ -238,6 +250,7 @@
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button
+                  id="nas3"
                   class="accordion-button collapsed"
                   type="button"
                   data-bs-toggle="collapse"
@@ -301,8 +314,8 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="toast-body" id="toastm">
-            <p>These links do not have security on them. you may be phished.</p>
+          <div class="toast-body">
+            <p id="toastm">These links do not have security on them. you may be phished.</p>
             <button
               onclick="acknowledge()"
               id="ack"
@@ -327,24 +340,44 @@
         let url = window.location.href;
         let path = url.split("/");
         let lastpath = path[path.length - 1];
-        hashes = lastpath.split("#")
-        hashes.shift()
-        if(hashes.length > 0){
+        hashes = lastpath.split("#");
+        hashes.shift();
+        if (hashes.length > 0) {
           checkhashes();
         }
       }
       function checkhashes() {
         if (hashes.includes(":3")) {
           alert("silly mode activated");
-          document.getElementById("int1").innerHTML = "Haiii :3 This is Olive.tools"
-          document.getElementById("int2").innerHTML = "Website brought to you by Olive I hope you like it <3:3"
-          document.getElementById("int3").innerHTML = 'Games <span class="badge text-bg-info">Certified Silly</span>'
-          document.getElementById("car1").innerHTML = 'yu can uh flap n shit. yes very burd'
-          document.getElementById("car2").innerHTML = 'silly game for silly kitties that have too much mony'
-          document.getElementById("car3").innerHTML = 'snek'
-
+          document.getElementById("int1").innerHTML =
+            "Haiii :3 This is Olive.tools";
+          document.getElementById("int2").innerHTML =
+            "Website brought to you by Olive I hope you like it <3:3";
+          document.getElementById("int3").innerHTML =
+            'Games <span class="badge text-bg-info">Certified Silly</span>';
+          document.getElementById("car1").innerHTML =
+            "yu can uh flap n shit. yes very burd";
+          document.getElementById("car2").innerHTML =
+            "silly game for silly kitties that have too much mony";
+          document.getElementById("car3").innerHTML = "snek";
+          document.getElementById("nas").innerHTML =
+            "its a silly server that does silly things";
+          document.getElementById("nas2").innerHTML = "wats it do";
+          document.getElementById("nas3").innerHTML = "wats innit";
+          document.getElementById("nas1").innerHTML = "wat is dat";
+          document.getElementById("Captcha").innerHTML =
+            "rules are meant to be broken :3";
+            document.getElementById("ack").innerHTML = "okey"
+            document.getElementById("toastm").innerHTML = "no sillyness (in these links) ok?"
+          getvalue();
         }
       }
+      function getvalue() {
+          document.getElementById("1rel").innerHTML = "silly machine";
+          document.getElementById("2rel").innerHTML = ":<";
+          document.getElementById("3rel").innerHTML = "hacking me";
+          document.getElementById("4rel").innerHTML = "ngl this is never going public";
+        }
       function attempt(location) {
         window.location.replace(location);
       }
@@ -360,10 +393,16 @@
       }
       function acknowledge() {
         document.getElementById("ack").remove();
-        document.getElementById("toastm").innerHTML += "acknowledged.";
-        document.getElementById("groupB").innerHTML = "";
-        document.getElementById("groupB").innerHTML = 
-          '<button id="1rel" type="button" style="width:20rem;" class="btn btn-primary btn-lg" onclick="attempt(\'https://98.206.39.127/vm/display/15/spice_auto.html?path=vm%2Fdisplay%2F15%2F&autoconnect=1\')">VM</button><button id="2rel"type="button" class="btn btn-primary btn-lg" onclick="attempt(\'https://98.206.39.127\')">Home</button><button type="button" class="btn btn-primary btn-lg" onclick="attempt(\'http://98.206.39.127:30044\')">Filebrowser</button><button type="button" class="btn btn-primary btn-lg" disabled aria-disabled="true">Youtube Downloader</button>';
+        if(hashes.includes(":3")){
+          document.getElementById("toastm").innerHTML += "<br>okey 👍"
+        }else{
+          document.getElementById("toastm").innerHTML += "<br>acknowledged.";
+        }
+        document.getElementById("groupB").innerHTML =
+          '<button id="1rel" type="button" style="width:20rem;" class="btn btn-primary btn-lg" onclick="attempt(\'https://98.206.39.127/vm/display/15/spice_auto.html?path=vm%2Fdisplay%2F15%2F&autoconnect=1\')">VM</button><button id="2rel"type="button" class="btn btn-primary btn-lg" onclick="attempt(\'https://98.206.39.127\')">Home</button><button type="button" id="3rel" class="btn btn-primary btn-lg" onclick="attempt(\'http://98.206.39.127:30044\')">Filebrowser</button><button type="button" class="btn btn-primary btn-lg" id="4rel" disabled aria-disabled="true">Youtube Downloader</button>';
+        if(hashes.includes(":3")){
+          getvalue();
+        }
       }
     </script>
   </body>
