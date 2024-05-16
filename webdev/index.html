@@ -32,6 +32,7 @@
         <p id="int2" class="customstuff text-center">
           Website brought to you by Oliver; I hope you like it <3
         </p>
+        <button type="button" class="btn btn-small btn-secondary" onclick="gae()">Funny button</button>
       </div>
       <div class="row gy-5">
         <h2 id="int3" class="standout">
@@ -334,6 +335,27 @@
       crossorigin="anonymous"
     ></script>
     <script>
+      let color = {
+        current: function(){
+          if(iteration > 255){
+            iteration = 0;
+            select++
+          }
+          if (select == 0){
+            return("r")
+          }else if(select == 1){
+            return("g")
+          }else if(select == 2){
+            return("b")
+          }
+        },
+        select: 0,
+        iteration: 0,
+        r: 0,
+        g: 0,
+        b: 0,
+        element: document.getElementById("int1").style.backgroundColor,
+      }
       let hashes = [];
       gethashes();
       function gethashes() {
@@ -370,13 +392,43 @@
             document.getElementById("ack").innerHTML = "okey"
             document.getElementById("toastm").innerHTML = "no sillyness (in these links) ok?"
           getvalue();
+        }else if(hashes.includes("bruh")){
+          alert("bruh mode activated")
+          document.getElementById("int1").innerHTML =
+            "This bruh is bruh";
+          document.getElementById("int2").innerHTML =
+            "Website bruh to bruh by Olive. bruh";
+          document.getElementById("int3").innerHTML =
+            'Bruh <span class="badge text-bg-info">Moment</span>';
+          document.getElementById("car1").innerHTML =
+            "Bruh bird has a bruh moment when he bruhs";
+          document.getElementById("car2").innerHTML =
+            "dont gamble bruh...";
+          document.getElementById("car3").innerHTML = "bruh moment when it doesnt work";
+          document.getElementById("nas").innerHTML =
+            "bruh moment server that does bruh";
+          document.getElementById("nas2").innerHTML = "bruh?";
+          document.getElementById("nas3").innerHTML = "bruh.";
+          document.getElementById("nas1").innerHTML = "bruh!";
+          document.getElementById("Captcha").innerHTML =
+            "Warning bruh";
+            document.getElementById("ack").innerHTML = "ight bro?"
+            document.getElementById("toastm").innerHTML = "you cant trust these links man, ight bro?"
+            getvalue();
         }
       }
       function getvalue() {
+        if(hashes.includes(":3")){
           document.getElementById("1rel").innerHTML = "silly machine";
           document.getElementById("2rel").innerHTML = ":<";
           document.getElementById("3rel").innerHTML = "hacking me";
           document.getElementById("4rel").innerHTML = "ngl this is never going public";
+        }else if(hashes.includes("bruh")){
+          document.getElementById("1rel").innerHTML = "bruh emulator";
+          document.getElementById("2rel").innerHTML = "bruh interface";
+          document.getElementById("3rel").innerHTML = "bro's files";
+          document.getElementById("4rel").innerHTML = "bro can maybe download videos";
+        }
         }
       function attempt(location) {
         window.location.replace(location);
@@ -395,14 +447,28 @@
         document.getElementById("ack").remove();
         if(hashes.includes(":3")){
           document.getElementById("toastm").innerHTML += "<br>okey 👍"
+        }else if(hashes.includes("bruh")){
+          document.getElementById("toastm").innerHTML += "<br>you a real one"
         }else{
           document.getElementById("toastm").innerHTML += "<br>acknowledged.";
         }
         document.getElementById("groupB").innerHTML =
           '<button id="1rel" type="button" style="width:20rem;" class="btn btn-primary btn-lg" onclick="attempt(\'https://98.206.39.127/vm/display/15/spice_auto.html?path=vm%2Fdisplay%2F15%2F&autoconnect=1\')">VM</button><button id="2rel"type="button" class="btn btn-primary btn-lg" onclick="attempt(\'https://98.206.39.127\')">Home</button><button type="button" id="3rel" class="btn btn-primary btn-lg" onclick="attempt(\'http://98.206.39.127:30044\')">Filebrowser</button><button type="button" class="btn btn-primary btn-lg" id="4rel" disabled aria-disabled="true">Youtube Downloader</button>';
-        if(hashes.includes(":3")){
           getvalue();
+      }
+      function gae(){
+        setInterval(rainbow,10)
+      }
+      function rainbow(){
+        color.iteration++
+        if(color.current == "r"){
+          color.r = color.iteration;
+        }else if(color.current == "g"){
+          color.g = color.iteration;
+        }else if(color.current == "b"){
+          color.b = color.iteration;
         }
+        color.element = "rgb("+color.r+","+color.g+","+color.b+")"
       }
     </script>
   </body>
