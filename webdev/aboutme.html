@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Games</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      .standout{
+        color:white;
+      }
+      .customhead{
+        color:blueviolet;
+      }
+      .customstuff{
+        color:rgb(51, 215, 128);
+        font-family: 'Franklin Gothic Medium', 'Arial Wide', Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body style="background-color: indigo;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" aria-disabled="true" disabled>OcO</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="aboutme.html"
+                >About me</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="games.html">Games</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="serversf.html">Server</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <h1 class="text-center">
+        <span class="badge text-bg-info" id="e">Yello</span>
+      </h1>
+      <div class="row gx-5 gy-5">
+        <div class="col-md-3">
+          <div class="card" style="width: 18rem;">
+            <img src="media/profile.png" class="card-img-top" alt="me:3" />
+            <div class="card-body">
+              <h3 id="tex1">Hi! Im Oliver</h3>
+              <p class="card-text" id="tex2">
+                I make silly things on the web. I'm most known for absolutely
+                nothing among nobody. No one knows me. I would rather keep it
+                that way, I like being hidden. You can find me on places like
+                Youtube making some terrible gaming videos, github making
+                terrible websites such as this. If you're lookin for more links
+                either look me up under the username "cybermine2098" or email me
+                @ cybermine.business@gmail.com.
+              </p>
+              <h5>Here are some helpful links:</h5>
+              <a href="https://youtube.com/@cybermine2098" target="_blank"
+                >Youtube</a
+              ><br />
+              <a href="https://github.com/cybermine2098" target="_blank"
+                >Github</a
+              >
+              <p>Discord: cyber.98</p>
+              <div id="extralinks"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="card">
+            <div class="card-body">
+              QNA:<br />
+              <br />
+              Q: What is that logo?<br />
+              A: Idk man i cooked it up on some random thursday. Here are the
+              two variants:<br />
+              <img src="media/logolight.png" /><img src="media/logodark.png" />
+              <br />
+              <br />
+              Q: why are you gatekeeping things behind the script tag<br />
+              A: you had better not be snooping around there<br><img src="media/funnyscreenshot.png"><br><br>
+              <div id="funi"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let hashes = [];
+      gethashes();
+      function gethashes() {
+        let url = window.location.href;
+        let path = url.split("/");
+        let lastpath = path[path.length - 1];
+        hashes = lastpath.split("#");
+        hashes.shift();
+        if (hashes.length > 0) {
+          checkhashes();
+        }
+      }
+      function checkhashes() {
+        if (hashes.includes(":3")) {
+          document.getElementById("e").innerHTML = "Yello ;3";
+          document.getElementById("tex1").innerHTML = "Hi :3 I'm Olive";
+          document.getElementById("extralinks").innerHTML =
+            "<a href='https://www.tumblr.com/cybermine2098?source=share'>Tumblr</a>";
+        }else if(hashes.includes("nobitches")){
+            document.getElementById("funi").innerHTML = "Q: Where the bitches at?<br>A: 😭 im working on it"
+        }else if(hashes.includes("echt")){
+            document.getElementById("funi").innerHTML = "Q: echt oder Fälschung<br>A: echt.";
+        }else if(hashes.includes("full")){
+            document.getElementById("funi").innerHTML = "Q: can i have a full list of #? <br>about me: :3, nobitches, yesbitches, echt, full <br> games page: :3, bruh <br> server page: :3, bruh"
+        }else if(hashes.includes("yesbitches")){
+            document.getElementById("funi").innerHTML = "<img src='media/trol.jpeg'>"
+        }
+      }
+    </script>
+  </body>
+</html>
