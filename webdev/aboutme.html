@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Games</title>
+    <title>About me</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -59,11 +59,16 @@
       <h1 class="text-center">
         <span class="badge text-bg-info" id="e">Yello</span>
       </h1>
-      <div class="row gx-5 gy-5">
-        <div class="col-md-3">
-          <div class="card" style="width: 18rem;">
-            <img src="media/profile.png" class="card-img-top" alt="me:3" />
+      <div class="row gx-2 gy-2">
+        <div class="col-md-4">
+          <div class="card">
+            <div id="photo">
+              <img src="media/profile1.png" class="card-img-top" alt="me:3" />
+            </div>
             <div class="card-body">
+              <button class="btn-sm btn btn-info" onclick="switcg()">
+                View Alternate picture
+              </button>
               <h3 id="tex1">Hi! Im Oliver</h3>
               <p class="card-text" id="tex2">
                 I make silly things on the web. I'm most known for absolutely
@@ -86,10 +91,13 @@
             </div>
           </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
           <div class="card">
             <div class="card-body">
               QNA:<br />
+              <br />
+              Q: three fun facts? <br />A: I'm 14, I attend Lane Tech in
+              Chicago, and uh i do stupid things online<br />
               <br />
               Q: What is that logo?<br />
               A: Idk man i cooked it up on some random thursday. Here are the
@@ -97,8 +105,20 @@
               <img src="media/logolight.png" /><img src="media/logodark.png" />
               <br />
               <br />
-              Q: why are you gatekeeping things behind the script tag<br />
-              A: you had better not be snooping around there<br><img src="media/funnyscreenshot.png"><br><br>
+              Q: are you gatekeeping things behind the script tag?<br />
+              A: noooooooooooo<br /><img
+                src="media/funnyscreenshot.png"
+              /><br /><br />
+              Q: So then what's <a href="#wt">this</a> link do?<br />A: haha...
+              where did you find that... it's nothing<br />
+              Q: Its gotta do something tho.. <br />A: it doesnt do
+              <button
+                type="button"
+                onclick="window.location.reload()"
+                class="btn btn-sm btn-danger"
+              >
+                anything</button
+              ><br /><br />
               <div id="funi"></div>
             </div>
           </div>
@@ -106,34 +126,76 @@
       </div>
     </div>
     <script>
-      let hashes = [];
-      gethashes();
-      function gethashes() {
+      let secret = {
+       hashes : [],
+       photo : 0,
+       gethashes: function () {
         let url = window.location.href;
         let path = url.split("/");
         let lastpath = path[path.length - 1];
-        hashes = lastpath.split("#");
-        hashes.shift();
-        if (hashes.length > 0) {
+        this.hashes = lastpath.split("#");
+        this.hashes.shift();
+        if (this.hashes.length > 0) {
           checkhashes();
         }
       }
+    }
+    secret.gethashes()
       function checkhashes() {
-        if (hashes.includes(":3")) {
+        if (secret.hashes.includes(":3")) {
           document.getElementById("e").innerHTML = "Yello ;3";
           document.getElementById("tex1").innerHTML = "Hi :3 I'm Olive";
           document.getElementById("extralinks").innerHTML =
             "<a href='https://www.tumblr.com/cybermine2098?source=share'>Tumblr</a>";
-        }else if(hashes.includes("nobitches")){
-            document.getElementById("funi").innerHTML = "Q: Where the bitches at?<br>A: 😭 im working on it"
-        }else if(hashes.includes("echt")){
-            document.getElementById("funi").innerHTML = "Q: echt oder Fälschung<br>A: echt.";
-        }else if(hashes.includes("full")){
-            document.getElementById("funi").innerHTML = "Q: can i have a full list of #? <br>about me: :3, nobitches, yesbitches, echt, full <br> games page: :3, bruh <br> server page: :3, bruh"
-        }else if(hashes.includes("yesbitches")){
-            document.getElementById("funi").innerHTML = "<img src='media/trol.jpeg'>"
         }
+        if (secret.hashes.includes("nobitches")) {
+          document.getElementById("funi").innerHTML +=
+            "Q: Where the bitches at?<br>A: 😭 im working on it<br><br>";
+        }
+        if (secret.hashes.includes("echt")) {
+          document.getElementById("funi").innerHTML +=
+            "Q: echt oder Fälschung<br>A: echt.<br><br>";
+        }
+        if (secret.hashes.includes("full")) {
+          document.getElementById("funi").innerHTML +=
+            "Q: can i have a full list of #? <br>A: <br>about me page: <a href='#:3#wt'>:3</a>, <a href='#nobitches#wt'>nobitches</a>,<a href='#morestuff#wt'>morestuff</a>, <a href='#yesbitches#wt'>yesbitches</a>, <a href='#echt#wt'>echt</a>, <a href='#full#wt'>full</a> <br> games page: <a href='games.html#:3'>:3</a>, <a href='games.html#bruh'>bruh</a> <br> server page: <a href='serversf.html#:3'>:3</a>, <a href='serversf.html#bruh'>bruh</a><br>(feel free to mix and match them)<br><button class='btn btn-sm btn-success' onclick='window.location.reload()'>Reload page</button><br><br>";
+        }
+        if (secret.hashes.includes("yesbitches")) {
+          document.getElementById("funi").innerHTML +=
+            "Q: fr? <br> A:<img src='media/trol.jpeg'><br><br>";
+        }
+        if (secret.hashes.includes("morestuff")) {
+          document.getElementById("funi").innerHTML +=
+            "Q: what the hell even is this?<br>A: yea idk a website? its for school<br><br>";
+          document.getElementById("funi").innerHTML +=
+            "Q: Is that literally your IP address?<br> A: Yeah...<br><br>";
+          document.getElementById("funi").innerHTML +=
+            "Q: Why would you share your NAS with the world<br> A: <ul><li>I can</li><li>I log peoples IP if they fail to log in.</li><li>I have nothing important stored on there.</li></ul><br><br>";
+        }
+        if (secret.hashes.includes("wt")) {
+          document.getElementById("funi").innerHTML +=
+            "<a class='btn btn-sm btn-success' href='#full'>Set destination home</a><br><button class='btn btn-sm btn-info' type='button' onclick='window.location.reload()''>Go!</button>";
+        }
+        if(secret.hashes.includes("yuri")){
+          document.getElementById("funi").innerHTML += "Q: romantic interest?<br>A:<img src='media/lesbian.png'>"
+        }
+        document.getElementById("funi").innerHTML +=
+          "<a href=''>clear hashes</a>";
+      }
+      function switcg() {
+        secret.photo++;
+        document.getElementById("photo").innerHTML =
+          '<img src="media/profile' +
+          ((photo % 4) + 1) +
+          '.png" class="card-img-top" alt="' +
+          ((photo % 4) + 1) +
+          '" />';
       }
     </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
