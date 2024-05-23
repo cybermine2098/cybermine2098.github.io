@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Games</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      .standout{
+        color:white;
+      }
+      .customhead{
+        color:blueviolet;
+      }
+      .customstuff{
+        color:rgb(51, 215, 128);
+        font-family: 'Franklin Gothic Medium', 'Arial Wide', Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body style="background-color: indigo;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" aria-disabled="true" disabled>OcO</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="aboutme.html">About me</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="games.html">Games</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="serversf.html">Server</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="dox.html"> API tools</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://cheesyclicker.elimastey.com">Cheesy Clicker</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container px-4">
+      <div class="row">
+        <h1 class="customhead text-center">
+          <span id="int1" class="badge text-bg-info" >Hi! This is OcO (<strong>O</strong>liver <strong>C</strong>orp<strong>O</strong>ration)</span>
+        </h1>
+        <p id="int2" class="customstuff text-center"><span class="badge text-bg-info text-sm">
+          Website brought to you by Oliver; I hope you like it &lt;3
+        </span>
+        </p>
+        <br>
+        <div class="col-md-2 offset-md-5">
+        <button class="btn btn-dark btn-sm" onclick="dissapate()" id="md3">Dismiss this message</button>
+      </div>
+      </div>
+      <div class="row gy-5">
+        <h2 id="int3" class="standout">
+          Games <span class="badge text-bg-danger">Hot</span>
+        </h2>
+      </div>
+      <div class="row gy-5">
+        <div class="col-md-4">
+          <div class="card" style="height:100%">
+            <img
+              src="media/ingame.png"
+              class="card-img-top"
+              alt="flappy bird"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Flappy Bird</h5>
+              <p class="card-text" id="car1">
+                Dodge pipes and flap your heart out on your phone or your
+                computer. Experience the bird from a third person perspective on
+                a daring adventure, or from our VR mode (for oculus devices
+                only).
+              </p>
+              <a href="flapselect.html" class="btn btn-primary playnow"
+                >Play now</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card" style="height:100%">
+            <img
+              src="media/blackmedia.png"
+              class="card-img-top"
+              alt="ace of spades from blackjack"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Blackjack</h5>
+              <p class="card-text" id="car2">
+                Play against the Dealer in an epic battle of luck. Get your
+                cards up to 21, but be careful not to bust. Out signature AI
+                (TM) can attempt to save you, but once you've won, there is no
+                cure for the addiction...
+              </p>
+              <a href="crackjack.html" class="btn btn-primary playnow"
+                >Play now</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card" style="height:100%">
+            <img src="media/snake.png" class="card-img-top" alt="snake" />
+            <div class="card-body">
+              <h5 class="card-title">Snake</h5>
+              <p class="card-text" id="car3">
+                Play the classic game of snake with no deaths and no limit to
+                your length. Mobile: unsupported. Try your luck with the
+                autoplay feature (P) to see how good your computer is, and share
+                your top score with your friends!
+              </p>
+              <a href="snake.html"  class="btn btn-primary playnow">Play now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let hashes = [];
+      gethashes();
+      function gethashes() {
+        let url = window.location.href;
+        let path = url.split("/");
+        let lastpath = path[path.length - 1];
+        hashes = lastpath.split("#");
+        hashes.shift();
+        if (hashes.length > 0) {
+          checkhashes();
+        }
+      }
+      function checkhashes() {
+        if (hashes.includes(":3")) {
+          alert("silly mode activated");
+          document.getElementById("int1").innerHTML =
+            "Haiii :3 This is Oco (<strong>O</strong>live <strong>C</strong>orp<strong>O</strong>rtation)";
+          document.getElementById("int2").innerHTML =
+            "Website brought to you by Olive I hope you like it <3:3";
+          document.getElementById("int3").innerHTML =
+            'Games <span class="badge text-bg-info">Certified Silly</span>';
+          document.getElementById("car1").innerHTML =
+            "yu can uh flap n shit. yes very burd";
+          document.getElementById("car2").innerHTML =
+            "silly game for silly kitties that have too much mony";
+          document.getElementById("car3").innerHTML = "snek";
+        } else if (hashes.includes("bruh")) {
+          alert("bruh mode activated");
+          document.getElementById("int1").innerHTML = "This bruh is bruh";
+          document.getElementById("int2").innerHTML =
+            "Website bruh to bruh by Olive. bruh";
+          document.getElementById("int3").innerHTML =
+            'Bruh <span class="badge text-bg-info">Moment</span>';
+          document.getElementById("car1").innerHTML =
+            "Bruh bird has a bruh moment when he bruhs";
+          document.getElementById("car2").innerHTML = "dont gamble bruh...";
+          document.getElementById("car3").innerHTML =
+            "bruh moment when it doesnt work";
+        }
+      }
+      function attempt(location) {
+        window.location.replace(location);
+      }
+      const toastTrigger = document.getElementById("Captcha");
+      const toastLiveExample = document.getElementById("outrel");
+
+      if (toastTrigger) {
+        const toastBootstrap =
+          bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+        toastTrigger.addEventListener("click", () => {
+          toastBootstrap.show();
+        });
+      }
+      function acknowledge() {
+        document.getElementById("ack").remove();
+        if (hashes.includes(":3")) {
+          document.getElementById("toastm").innerHTML += "<br>okey 👍";
+        } else if (hashes.includes("bruh")) {
+          document.getElementById("toastm").innerHTML += "<br>you a real one";
+        } else {
+          document.getElementById("toastm").innerHTML += "<br>acknowledged.";
+        }
+        document.getElementById("groupB").innerHTML =
+          '<button id="1rel" type="button" style="width:20rem;" class="btn btn-primary btn-lg" onclick="attempt(\'https://98.206.39.127/vm/display/15/spice_auto.html?path=vm%2Fdisplay%2F15%2F&autoconnect=1\')">VM</button><button id="2rel"type="button" class="btn btn-primary btn-lg" onclick="attempt(\'https://98.206.39.127\')">Home</button><button type="button" id="3rel" class="btn btn-primary btn-lg" onclick="attempt(\'http://98.206.39.127:30044\')">Filebrowser</button><button type="button" class="btn btn-primary btn-lg" id="4rel" disabled aria-disabled="true">Youtube Downloader</button>';
+      }
+      function dissapate(){
+        document.getElementById("int1").remove()
+        document.getElementById("int2").remove()
+        document.getElementById("md3").remove()
+      }
+    </script>
+  </body>
+</html>
