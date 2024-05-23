@@ -377,8 +377,12 @@
         fetch("https://api.nationalize.io/?name=" + url)
           .then((response) => response.json())
           .then((data) => {
+            document.getElementById("nestimate").innerHTML = "Lives in: <br>"
+            for(let index of data.country){
+              document.getElementById("nestimate").innerHTML += data.country[index].probability+"% in "+data.country[index].country_id+"<br>"
+            }
             document.getElementById("nestimate").innerHTML =
-              "not working rn! working on fixing.";
+              "https://www.iban.com/country-codes";
           });
       }
     </script>
