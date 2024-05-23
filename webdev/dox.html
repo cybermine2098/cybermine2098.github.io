@@ -63,7 +63,7 @@
         </div>
       </div>
     </nav>
-    <div class="container">
+    <div class="container gy-5 gx-5">
       <br />
       <div class="row">
         <div class="col-md-4 offset-md-1">
@@ -81,8 +81,9 @@
             </div>
           </div>
         </div>
+        <br />
         <div class="col-md-6">
-          <div class="card">
+          <div class="card" style="height:100%">
             <div class="card-body">
               <h5 class="card-title">Cat generator</h5>
               <div id="catout"></div>
@@ -97,7 +98,7 @@
       <br />
       <div class="row">
         <div class="col-md-6 offset-md-1">
-          <div class="card">
+          <div class="card" style="height:100%">
             <div class="card-body">
               <h5 class="card-title">Joke generator</h5>
               <p class="card-text" id="jokeout">Press the button for a joke!</p>
@@ -125,24 +126,41 @@
             </div>
           </div>
         </div>
+        <br />
         <div class="col-md-4">
-          <div class="card">
+          <div class="card" style="height:100%">
             <div class="card-body">
-              <h5>Age estimate from name</h5>
+              <h5>Data from person name</h5>
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Name" aria-label="Recipient's username" id="namein">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Someone's name"
+                  aria-label="Recipient's username"
+                  id="namein"
+                />
               </div>
-              <br>
-              <p class="card-text text-center" id="estimate"></p>
-              <button type="button" onclick="agefromname()" class="btn btn-success">Search</button>
+              <br />
+              <p class="card-text text-center" id="aestimate">
+                Please do not be offended by these results, they are purely for
+                fun.
+              </p>
+              <p class="card-text text-center" id="gestimate"></p>
+              <button
+                type="button"
+                onclick="agefromname()"
+                class="btn btn-success"
+              >
+                Search
+              </button>
             </div>
           </div>
         </div>
       </div>
       <br />
       <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <div class="card">
+        <div class="col-md-8 offset-md-1">
+          <div class="card" style="height:100%">
             <div class="card-body">
               <h5 class="card-title">Advice generator</h5>
               <div id="adviceout"></div>
@@ -151,13 +169,11 @@
             </div>
           </div>
         </div>
-      </div>
-      <br />
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <div class="card">
-            <a class="btn btn-lg btn-success" href="howto.html">Do it yourself!</a>
-          </div>
+
+        <div class="col-md-2">
+          <a class="btn btn-lg btn-success" href="howto.html"
+            >Try it yourself!</a
+          >
         </div>
       </div>
     </div>
@@ -215,9 +231,9 @@
       }
       function google() {
         window.location.replace(
-          "https://www.google.com/search?q=where+is+" +
+          "https://www.google.com/search?q=" +
             chords.lat +
-            "+" +
+            "," +
             chords.long +
             "&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDExMzZqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8&safe=active&ssui=on&surl=1"
         );
@@ -322,11 +338,48 @@
             document.getElementById("adviceout").innerHTML = ` ${advice}`;
           });
       }
-      function agefromname(){
-        let url = "https://api.agify.io/?name="+document.getElementById("namein").value
-        fetch(url).then((response) => response.json()).then((data) => {
-          document.getElementById("estimate").innerHTML = "is "+data.age+" years old";
-        })
+      function agefromname() {
+        let url = document.getElementById("namein").value;
+        fetch("https://api.agify.io/?name=" + url)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.age != undefined) {
+              document.getElementById("aestimate").innerHTML =
+                url + " is " + data.age + " years old";
+            } else {
+              document.getElementById("aestimate").innerHTML =
+                "Too many requests were sent from this IP address today.";
+            }
+          });
+        fetch("https://api.genderize.io/?name=" + url)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.gender != undefined) {
+              let gender = "They";
+              let verb = "has";
+              if (data.gender == "male" && data.probability > 0.75) {
+                gender = "He";
+              } else if (data.gender == "female" && data.probability > 0.75) {
+                gender = "She";
+              } else {
+                verb = "have";
+              }
+              document.getElementById("gestimate").innerHTML =
+                gender +
+                " " +
+                verb +
+                " a " +
+                data.probability * 100 +
+                "% chance to be " +
+                data.gender;
+            }
+          });
+        fetch("https://api.nationalize.io/?name=" + url)
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("nestimate").innerHTML =
+              "not working rn! working on fixing.";
+          });
       }
     </script>
   </body>

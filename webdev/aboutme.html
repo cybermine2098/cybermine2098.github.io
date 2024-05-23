@@ -27,7 +27,7 @@
   <body style="background-color: indigo;">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" aria-disabled="true" >OcO</a>
+        <a class="navbar-brand" aria-disabled="true">OcO</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -56,7 +56,9 @@
               <a class="nav-link" href="dox.html"> API tools</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://cheesyclicker.elimastey.com">Cheesy Clicker</a>
+              <a class="nav-link" href="https://cheesyclicker.elimastey.com"
+                >Cheesy Clicker</a
+              >
             </li>
           </ul>
         </div>
@@ -109,23 +111,20 @@
               Q: What is that logo?<br />
               A: Idk man i cooked it up on some random thursday. Here are the
               two variants:<br />
-              <img src="media/logolight.png" alt="logolight" /><img src="media/logodark.png" alt="logodark"/>
+              <img src="media/logolight.png" alt="logolight" /><img
+                src="media/logodark.png"
+                alt="logodark"
+              />
               <br />
               <br />
               Q: are you gatekeeping things behind the script tag?<br />
               A: noooooooooooo<br /><img
-                src="media/funnyscreenshot.png" alt="gethashes command"
+                src="media/funnyscreenshot.png"
+                alt="gethashes command"
               /><br /><br />
-              Q: So then what's <a href="#wt">this</a> link do?<br />A: haha...
-              where did you find that... it's nothing<br />
-              Q: Its gotta do something tho.. <br />A: it doesnt do
-              <button
-                type="button"
-                onclick="window.location.reload()"
-                class="btn btn-sm btn-danger"
-              >
-                anything</button
-              ><br /><br />
+              Q: why does your site look different almost every day<br />
+              A: I update it very often for no reason, almost always minor
+              tweaks.<br /><br />
               <div id="funi"></div>
             </div>
           </div>
@@ -134,20 +133,20 @@
     </div>
     <script>
       let secret = {
-       hashes : [],
-       photo : 0,
-       gethashes: function () {
-        let url = window.location.href;
-        let path = url.split("/");
-        let lastpath = path[path.length - 1];
-        this.hashes = lastpath.split("#");
-        this.hashes.shift();
-        if (this.hashes.length > 0) {
-          checkhashes();
-        }
-      }
-    }
-    secret.gethashes()
+        hashes: [],
+        photo: 0,
+        gethashes: function () {
+          let url = window.location.href;
+          let path = url.split("/");
+          let lastpath = path[path.length - 1];
+          this.hashes = lastpath.split("#");
+          this.hashes.shift();
+          if (this.hashes.length > 0) {
+            checkhashes();
+          }
+        },
+      };
+      secret.gethashes();
       function checkhashes() {
         if (secret.hashes.includes(":3")) {
           document.getElementById("e").innerHTML = "Yello ;3";
@@ -183,8 +182,9 @@
           document.getElementById("funi").innerHTML +=
             "<a class='btn btn-sm btn-success' href='#full'>Set destination home</a><br><button class='btn btn-sm btn-info' type='button' onclick='window.location.reload()''>Go!</button>";
         }
-        if(secret.hashes.includes("yuri")){
-          document.getElementById("funi").innerHTML += "Q: romantic interest?<br>A:<img src='media/lesbian.png'>"
+        if (secret.hashes.includes("yuri")) {
+          document.getElementById("funi").innerHTML +=
+            "Q: romantic interest?<br>A:<img src='media/lesbian.png'>";
         }
         document.getElementById("funi").innerHTML +=
           "<a href=''>clear hashes</a>";
