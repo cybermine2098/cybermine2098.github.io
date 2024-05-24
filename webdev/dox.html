@@ -159,11 +159,13 @@
     crossorigin="anonymous"></script>
   <script>
     let apikey
+    let locality = "en";
     let details = {
       age: null,
       gender: null,
       verb: null,
       noun: null,
+      percents: [],
       areas: [],
     }
     if (localStorage.getItem("apikey") == undefined) {
@@ -327,9 +329,15 @@
         });
     }
     function agefromname(caller) {
+      details.areas = [];
+      details.percents = [];
       if (apikey == undefined) {
         apikey = prompt("please provide an api key. If you don't have one, click ok.");
         localStorage.setItem("apikey", apikey)
+        let newlocal = prompt("locality?")
+        if (newlocal != null) {
+          locality = newlocal;
+        }
       }
       let url = document.getElementById("namein").value;
       fetch("https://api.agify.io/?name=" + url + "&apikey=" + apikey)
@@ -379,25 +387,30 @@
           document.getElementById("nestimate").innerHTML = "";
           let countries = data.country
           for (let index = 0; index < countries.length; index++) {
-            getconame(data.country[index].country_id)
+            details.areas.push(countries[index].country_id)
+            details.percents.push((Math.round(countries[index].probability* 1000)) / 10)
           }
-          for (let index = 0; index < countries.length; index++) {
-            document.getElementById("nestimate").innerHTML += (Math.round(countries[index].probability * 1000)) / 10 + "% chance to live in " + details.areas[index] + "<br>";
-          }
+          navigator.clipboard.writeText("https://api.nationalize.io/?name=" + url + "&apikey=" + apikey)
+          write();
         });
-      if (caller == 1) {
-        agefromname(2)
-      } else if(caller != 2){
-        agefromname(1)
-      }
     }
-    function getconame(id) {
-      let thisurl = "https://api-bdc.net/data/country-info?code=" + id + "&localityLanguage=en&key=bdc_8e934524ad344a95956c0cd93534ed08";
-      fetch(thisurl)
-        .then((responses) => responses.json())
-        .then((dataa) => {
-          details.areas.push(dataa.name)
-        });
+    function write() {
+      for (let index = 0; index < details.areas.length; index++) {
+        let thisurl = "https://api-bdc.net/data/country-info?code=" + details.areas[index] + "&localityLanguage=" + locality + "&key=bdc_8e934524ad344a95956c0cd93534ed08";
+        fetch(thisurl)
+          .then((responses) => responses.json())
+          .then((data) => {
+            document.getElementById("nestimate").innerHTML += details.percents[index] + "% chance to live in " + data.isoName + "<br>";
+          });
+      }
+      alert(details.areas)
+    alert(details.percents)
+    }
+
+    function clear(){
+      alert("cleared")
+      details.areas = [];
+      details.percents = [];
     }
   </script>
 </body>
