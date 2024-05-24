@@ -326,13 +326,13 @@
           document.getElementById("adviceout").innerHTML = ` ${advice}`;
         });
     }
-    function agefromname(call) {
+    function agefromname(caller) {
       if (apikey == undefined) {
         apikey = prompt("please provide an api key. If you don't have one, click ok.");
         localStorage.setItem("apikey", apikey)
       }
       let url = document.getElementById("namein").value;
-      fetch("https://api.agify.io/?name=" + url + gapi())
+      fetch("https://api.agify.io/?name=" + url + "&apikey=" + apikey)
         .then((response) => response.json())
         .then((data) => {
           if (data.age != undefined) {
@@ -344,7 +344,7 @@
               "An error occured.";
           }
         });
-      fetch("https://api.genderize.io/?name=" + url + gapi())
+      fetch("https://api.genderize.io/?name=" + url + "&apikey=" + apikey)
         .then((response) => response.json())
         .then((data) => {
           if (data.gender != undefined) {
@@ -373,19 +373,23 @@
               data.gender;
           }
         });
-      fetch("https://api.nationalize.io/?name=" + url + gapi())
+      fetch("https://api.nationalize.io/?name=" + url + "&apikey=" + apikey)
         .then((response) => response.json())
         .then((data) => {
+          document.getElementById("nestimate").innerHTML = "";
+          let countries = data.country
           for (let index = 0; index < countries.length; index++) {
-            getconame(countries[index].country_id)
+            getconame(data.country[index].country_id)
           }
           for (let index = 0; index < countries.length; index++) {
-            document.getElementById("nestimate").innerHTML += (Math.round(countries[index].probability * 1000)) / 10 + "% chance to live in " + details.areas[index] +"<br>";
+            document.getElementById("nestimate").innerHTML += (Math.round(countries[index].probability * 1000)) / 10 + "% chance to live in " + details.areas[index] + "<br>";
           }
         });
-        if(call == undefined){
-          agefromname(1)
-        }
+      if (caller == 1) {
+        agefromname(2)
+      } else if(caller != 2){
+        agefromname(1)
+      }
     }
     function getconame(id) {
       let thisurl = "https://api-bdc.net/data/country-info?code=" + id + "&localityLanguage=en&key=bdc_8e934524ad344a95956c0cd93534ed08";
@@ -394,9 +398,6 @@
         .then((dataa) => {
           details.areas.push(dataa.name)
         });
-    }
-    function gapi(){
-      if(apikey != undefined){return("&apikey=" + apikey)}
     }
   </script>
 </body>
