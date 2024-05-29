@@ -61,12 +61,7 @@
             <div id="geolocation">
               Please turn Javascript on for this demonstration.
             </div>
-            <div id="googleit">
-              Do you want me to prove it? <br />
-              <button class="btn btn-sm btn-danger" onclick="google()">
-                Check these coordinates
-              </button>
-            </div>
+            <button onclick="geolocate()" class="btn btn-warning">Get location</button>
           </div>
         </div>
       </div>
@@ -75,9 +70,9 @@
         <div class="card" style="height:100%">
           <div class="card-body">
             <h5 class="card-title">Cat generator</h5>
-            <div id="catout"></div>
+            <div id="catout">click image for new cat</div>
             <br />
-            <button onclick="getcar()" class="btn btn-primary">
+            <button onclick="getcar()" id="citi" class="btn btn-primary">
               Find cat
             </button>
           </div>
@@ -86,34 +81,26 @@
     </div>
     <br />
     <div class="row">
-      <div class="col-md-6 offset-md-1">
+      <div class="col-md-4 offset-md-1">
         <div class="card" style="height:100%">
           <div class="card-body">
             <h5 class="card-title">Joke generator</h5>
             <p class="card-text" id="jokeout">Press the button for a joke!</p>
             <div id="jokesb">
-              <button onclick="getjoke('pun')" class="btn btn-primary">
-                Pun
-              </button>
-              <button onclick="getjoke('programming')" class="btn btn-primary">
-                Programming
-              </button>
-              <button onclick="getjoke('spooky')" class="btn btn-primary">
-                Spooky
-              </button>
-              <button onclick="getjoke('misc')" class="btn btn-primary">
-                Misc
-              </button>
-              <button onclick="getjoke('dad')" class="btn btn-primary">
-                Dad
-              </button>
+              <div class="input-group mb-3" id="regen">
+                <button onclick="pregetjoke(document.getElementById('joker').value)" class="btn btn-primary">
+                  joke</button>
+                <span class="input-group-text"> type:</span>
+                <input type="text" id="joker" class="form-control" placeholder="pun, misc, spooky, dad, programming"
+                  aria-label="pun, misc, spooky, dad, programming">
+              </div>
             </div>
             <div id="extras"></div>
           </div>
         </div>
       </div>
       <br />
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div class="card" style="height:100%">
           <div class="card-body">
             <h5>Data from person name</h5>
@@ -147,10 +134,12 @@
           </div>
         </div>
       </div>
-
       <div class="col-md-2">
-        <a class="btn btn-lg btn-success" href="howto.html">Try it yourself!</a>
-        <button class="btn btn-danger btn-lg" onclick="localStorage.clear()">Clear cache</button>
+        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+          <a class="btn btn-lg btn-success" href="howto.html">Try it yourself!</a>
+          <button class="btn btn-warning btn-lg">Button</button>
+          <button class="btn btn-danger btn-lg" onclick="localStorage.clear();document.getElementById('present').remove()">Clear cache</button>
+        </div>
       </div>
     </div>
   </div>
@@ -158,6 +147,27 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
   <script>
+    document.addEventListener("keydown", function(){
+      if(event.which == "13"){
+        if(document.getElementById("joker").value != ""){
+          pregetjoke(document.getElementById("joker").value)
+          generation = document.getElementById("joker").value
+          document.getElementById("joker").value = "";
+          if(!document.getElementById("present")){
+            document.getElementById("regen").innerHTML += "<button id='present' class='btn btn-primary' onclick='regenerate()'>regen</button>"
+          }
+        }else if(document.getElementById("namein").value != ""){
+          agefromname();
+          document.getElementById("namein").value = "";
+        }
+      }
+    })
+    function regenerate(){
+      if(generation != null){
+        pregetjoke(generation)
+      }
+    }
+    let generation = null;
     let apikey
     let locality = "en";
     let details = {
@@ -185,23 +195,20 @@
         checkhashes();
       }
     }
-    function checkhashes() {
+    function pregetjoke(valu) {
       if (hashes.includes("nsfw")) {
-        document.getElementById("extras").innerHTML =
-          '<button onclick="getjoke(\'dark\')" class="btn btn-primary">Dark joke</button>';
+        safety = ""
       }
-      if (hashes.includes("NC")) {
-        document.getElementById("jokesb").innerHTML =
-          '<button onclick="getjoke(\'any\')" class="btn btn-primary"> Grab joke </button>';
-      }
+      getjoke(valu)
+    }
+    function geolocate() {
+      getLocation();
     }
     const x = document.getElementById("geolocation");
     let chords = {
       lat: 0,
       long: 0,
     };
-    getLocation();
-
     function getLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -219,22 +226,16 @@
       chords.long = position.coords.longitude;
       chords.lat = position.coords.latitude;
     }
-    function google() {
-      window.location.replace(
-        "https://www.google.com/search?q=" +
-        chords.lat +
-        "," +
-        chords.long +
-        "&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDExMzZqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8&safe=active&ssui=on&surl=1"
-      );
-    }
     function getcar() {
+      if(document.getElementById("citi")){
+        document.getElementById("citi").remove()
+      }
       fetch("https://api.thecatapi.com/v1/images/search")
         .then((response) => response.json())
         .then((data) => {
           const imageUrl = data[0].url;
           document.getElementById("catout").innerHTML =
-            "<img class='card-img-top' alt='kitty' src=" +
+            "<img class='card-img-top' onclick='getcar()' alt='kitty' src=" +
             imageUrl +
             " alt='cat' >";
         });
@@ -380,25 +381,25 @@
               data.probability * 100 +
               "% chance to be " +
               data.gender;
-        }else{
-          document.getElementById("gestimate").innerHTML = "An error occured while estimating gender."
+          } else {
+            document.getElementById("gestimate").innerHTML = "An error occured while estimating gender."
 
-        }
+          }
         });
       fetch("https://api.nationalize.io/?name=" + url + "&apikey=" + apikey)
         .then((response) => response.json())
         .then((data) => {
-          if(url == "olive" || url == "Olive"){
+          if (url == "olive" || url == "Olive") {
             alert("gay person alert")
           }
           document.getElementById("nestimate").innerHTML = "";
           let countries = data.country
-          if(countries.length == 0){
+          if (countries.length == 0) {
             document.getElementById("nestimate").innerHTML = "An error occured while estimating nationality."
           }
           for (let index = 0; index < countries.length; index++) {
             details.areas.push(countries[index].country_id)
-            details.percents.push((Math.round(countries[index].probability* 1000)) / 10)
+            details.percents.push((Math.round(countries[index].probability * 1000)) / 10)
           }
           navigator.clipboard.writeText("https://api.nationalize.io/?name=" + url + "&apikey=" + apikey)
           write();
@@ -415,7 +416,7 @@
       }
     }
 
-    function clear(){
+    function clear() {
       details.areas = [];
       details.percents = [];
     }
