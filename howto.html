@@ -150,7 +150,7 @@
                 </code>
               </p>
               <div class="text-center">
-                <button class="btn btn-sm btn-info" onclick="copythis()">
+                <button class="btn btn-sm btn-info" id="clicker" onclick="copythis()">
                   Copy to Clipboard
                 </button>
               </div>
@@ -177,6 +177,7 @@
         navigator.clipboard.writeText(
           document.getElementById("codes").textContent
         );
+        document.getElementById("clicker").innerHTML = "Copied!"
       }
     </script>
   </body>
