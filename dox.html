@@ -5,9 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>API's</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  <link id="bscss" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-  <style>
+  <style id="mycss">
     .standout {
       color: white;
     }
@@ -40,9 +40,6 @@
             <a class="nav-link" href="games.html">Games</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="serversf.html">Server</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link active" href="dox.html"> API tools</a>
           </li>
           <li class="nav-item">
@@ -55,11 +52,12 @@
   <div class="container gy-5 gx-5">
     <br />
     <div class="row">
-      <div class="col-md-4 offset-md-1">
+      <div class="col-md-4">
         <div class="card text-center" style="height:100%">
           <div class="card-body">
             <div id="geolocation">
-              Please turn Javascript on for this demonstration.
+              Please allow Location for this demonstration. <br> No data is sent back to a server, everything is client
+              side.
             </div>
             <button onclick="geolocate()" class="btn btn-warning">Get location</button>
           </div>
@@ -70,7 +68,7 @@
         <div class="card" style="height:100%">
           <div class="card-body">
             <h5 class="card-title">Cat generator</h5>
-            <div id="catout">click image for new cat</div>
+            <div id="catout">Click image for new cat<br>Cat URLS are auto-copied.</div>
             <br />
             <button onclick="getcar()" id="citi" class="btn btn-primary">
               Find cat
@@ -78,10 +76,20 @@
           </div>
         </div>
       </div>
+      <div class="col-md-2">
+        <div class="card" style="height:100%">
+          <div class="card-body">
+            <h5 class="card-title">Advice generator</h5>
+            <div id="adviceout"></div>
+            <br />
+            <button onclick="advise()" class="btn btn-primary">Advise</button>
+          </div>
+        </div>
+      </div>
     </div>
     <br />
     <div class="row">
-      <div class="col-md-4 offset-md-1">
+      <div class="col-md-5">
         <div class="card" style="height:100%">
           <div class="card-body">
             <h5 class="card-title">Joke generator</h5>
@@ -95,12 +103,12 @@
                   aria-label="pun, misc, spooky, dad, programming">
               </div>
             </div>
-            <div id="extras"></div>
+            <a class="card-text" href="docs.html">Documentation</a>
           </div>
         </div>
       </div>
       <br />
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="card" style="height:100%">
           <div class="card-body">
             <h5>Data from person name</h5>
@@ -121,24 +129,13 @@
           </div>
         </div>
       </div>
-    </div>
-    <br />
-    <div class="row">
-      <div class="col-md-8 offset-md-1">
-        <div class="card" style="height:100%">
-          <div class="card-body">
-            <h5 class="card-title">Advice generator</h5>
-            <div id="adviceout"></div>
-            <br />
-            <button onclick="advise()" class="btn btn-primary">Advise</button>
-          </div>
-        </div>
-      </div>
+      <br>
       <div class="col-md-2">
         <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
           <a class="btn btn-lg btn-success" href="howto.html">Try it yourself!</a>
           <button class="btn btn-warning btn-lg">Button</button>
-          <button class="btn btn-danger btn-lg" onclick="localStorage.clear();document.getElementById('present').remove()">Clear cache</button>
+          <button class="btn btn-danger btn-lg"
+            onclick="localStorage.clear();document.getElementById('present').remove()">Clear cache</button>
         </div>
       </div>
     </div>
@@ -147,28 +144,30 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
   <script>
-    document.addEventListener("keydown", function(){
-      if(event.which == "13"){
-        if(document.getElementById("joker").value != ""){
+    document.addEventListener("keydown", function () {
+      if (event.which == "13") {
+        if (document.getElementById("joker").value != "") {
           pregetjoke(document.getElementById("joker").value)
           generation = document.getElementById("joker").value
           document.getElementById("joker").value = "";
-          if(!document.getElementById("present")){
+          if (!document.getElementById("present")) {
             document.getElementById("regen").innerHTML += "<button id='present' class='btn btn-primary' onclick='regenerate()'>regen</button>"
           }
-        }else if(document.getElementById("namein").value != ""){
+        } if (document.getElementById("namein").value != "") {
           agefromname();
           document.getElementById("namein").value = "";
         }
       }
     })
-    function regenerate(){
-      if(generation != null){
+    function regenerate() {
+      if (generation != null) {
         pregetjoke(generation)
       }
     }
+    let safety = "safe-mode"
     let generation = null;
     let apikey
+    let listener = null;
     let locality = "en";
     let details = {
       age: null,
@@ -196,10 +195,10 @@
       }
     }
     function pregetjoke(valu) {
-      if (hashes.includes("nsfw")) {
+      if (hashes.includes("u")) {
         safety = ""
       }
-      getjoke(valu)
+      getjoke(valu.split("?")[0], valu, valu.split("?")[0])
     }
     function geolocate() {
       getLocation();
@@ -227,7 +226,7 @@
       chords.lat = position.coords.latitude;
     }
     function getcar() {
-      if(document.getElementById("citi")){
+      if (document.getElementById("citi")) {
         document.getElementById("citi").remove()
       }
       fetch("https://api.thecatapi.com/v1/images/search")
@@ -238,62 +237,52 @@
             "<img class='card-img-top' onclick='getcar()' alt='kitty' src=" +
             imageUrl +
             " alt='cat' >";
+          navigator.clipboard.writeText(data[0].url)
         });
     }
-    function getjoke(type) {
-      if (type == "pun") {
-        fetch("https://v2.jokeapi.dev/joke/Pun?safe-mode")
+    function getjoke(type, commands) {
+      if (type != "dad") {
+        fetch("https://v2.jokeapi.dev/joke/" + type + "?" + safety)
           .then((response) => response.json())
           .then((data) => {
             if (data.type == "twopart") {
               document.getElementById("jokeout").innerHTML =
                 data.setup + "<br>" + data.delivery;
-            } else {
+            } else if (data.type == "single") {
               document.getElementById("jokeout").innerHTML = data.joke;
+            } else if (data.error) {
+              document.getElementById("jokeout").innerHTML = data.message + "<br>" + data.additionalInfo
+            } else {
+              document.getElementById("jokeout").innerHTML = "A critical error has occured. Check your internet connection and try again."
             }
-          });
-      } else if (type == "programming") {
-        fetch("https://v2.jokeapi.dev/joke/Programming?safe-mode")
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.type == "twopart") {
-              document.getElementById("jokeout").innerHTML =
-                data.setup + "<br>" + data.delivery;
-            } else {
-              document.getElementById("jokeout").innerHTML = data.joke;
-            }
-          });
-      } else if (type == "dark") {
-        fetch("https://v2.jokeapi.dev/joke/Dark")
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.type == "twopart") {
-              document.getElementById("jokeout").innerHTML =
-                data.setup + "<br>" + data.delivery;
-            } else {
-              document.getElementById("jokeout").innerHTML = data.joke;
-            }
-          });
-      } else if (type == "spooky") {
-        fetch("https://v2.jokeapi.dev/joke/Spooky?safe-mode")
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.type == "twopart") {
-              document.getElementById("jokeout").innerHTML =
-                data.setup + "<br>" + data.delivery;
-            } else {
-              document.getElementById("jokeout").innerHTML = data.joke;
-            }
-          });
-      } else if (type == "misc") {
-        fetch("https://v2.jokeapi.dev/joke/Misc?safe-mode")
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.type == "twopart") {
-              document.getElementById("jokeout").innerHTML =
-                data.setup + "<br>" + data.delivery;
-            } else {
-              document.getElementById("jokeout").innerHTML = data.joke;
+            if (commands != undefined) {
+              let comms = commands.split("?")
+              comms.shift();
+              console.log(comms)
+              for (let idx = 0; idx < comms.length; idx++) {
+                if (comms[idx].split("#")[0] == "bindto") {
+                  console.log("Attempting to regenerate every time " + (comms[idx].split("#")[1]) + " uuid")
+                  listener = comms[idx].split("#")[1];
+                  document.addEventListener("keydown", function () {
+                    if (event.which == listener) {
+                      regenerate();
+                    }
+                  })
+                } else if (comms[idx] == "reportid") {
+                  document.getElementById("jokeout").innerHTML += "<br> Joke Id: " + data.id
+                } else if (comms[idx] == "reportstyle") {
+                  document.getElementById("jokeout").innerHTML += "<br> Joke Type: " + data.type
+                } else if (comms[idx] == "debug") {
+                  document.getElementById("jokeout").innerHTML += "<br>" + data.lang + "<- language"
+                  document.getElementById("jokeout").innerHTML += "<br>" + data.safe + "<- safe"
+                  document.getElementById("jokeout").innerHTML += "<br>" + data.error + " <- errors"
+                } else if (comms[idx] == "oldUI") {
+                  document.getElementById("jokesb").innerHTML = "<button onclick='getjoke(\"pun\")'>Pun</button><button onclick='pregetjoke(\"misc\")'>misc</button><button onclick='pregetjoke(\"programming\")'>programming</button><button onclick='pregetjoke(\"dark\")'>dark</button><button onclick='pregetjoke(\"any\")'>any</button>"
+                  document.getElementById("bscss").remove();
+                  document.body.style.backgroundColor = "white"
+                }
+                ;
+              }
             }
           });
       } else if (type == "dad") {
@@ -308,18 +297,10 @@
             let joke = `${dadJoke}`;
             document.getElementById("jokeout").innerHTML = joke;
           });
-      } else if (type == "any") {
-        fetch("https://v2.jokeapi.dev/joke/Any")
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.type == "twopart") {
-              document.getElementById("jokeout").innerHTML =
-                data.setup + "<br>" + data.delivery;
-            } else {
-              document.getElementById("jokeout").innerHTML = data.joke;
-            }
-          });
       }
+    }
+    function redraw(wait, rep, type) {
+
     }
     function advise() {
       fetch("https://api.adviceslip.com/advice")
@@ -356,7 +337,6 @@
       fetch("https://api.genderize.io/?name=" + url + "&apikey=" + apikey)
         .then((response) => response.json())
         .then((data) => {
-          navigator.clipboard.writeText("https://api.genderize.io/?name=" + url + "&apikey=" + apikey)
           if (data.gender != undefined) {
             let gender = "They";
             let verb = "have";
@@ -383,7 +363,6 @@
               data.gender;
           } else {
             document.getElementById("gestimate").innerHTML = "An error occured while estimating gender."
-
           }
         });
       fetch("https://api.nationalize.io/?name=" + url + "&apikey=" + apikey)
